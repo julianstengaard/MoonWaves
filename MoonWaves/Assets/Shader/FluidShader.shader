@@ -3,7 +3,9 @@
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
+		_FluidTex ("Texture", 2D) = "white" {}
 		_Color("Main Color", COLOR) = (1,1,1,1)
+		_Cutoff("Cutoff", float) = 0.5
 	}
 	SubShader
 	{
@@ -39,17 +41,19 @@
 			}
 			
 			sampler2D _MainTex;
-			float4 color;
+			sampler2D _FluidTex;
+			float4 _Color;
+			float _Cutoff;
 
 			fixed4 frag (v2f i) : SV_Target
 			{
 				fixed4 col = tex2D(_MainTex, i.uv);
-				// just invert the colors
+				fixed4 fluid = tex2D(_FluidTex, i.uv);
 				
-				if (col.r > 0 || col.g > 0 || col.b > 0) {
-					col = color;
+				if (fluid.r > _Cutoff || fluid.g > _Cutoff || fluid.b > _Cutoff) {
+					col = _Color;
 				}
-				
+
 				return col;
 			}
 			ENDCG
