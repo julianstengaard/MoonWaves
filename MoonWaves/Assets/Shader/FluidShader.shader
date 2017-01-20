@@ -4,8 +4,10 @@
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_FluidTex ("Texture", 2D) = "white" {}
-		_Color("Main Color", COLOR) = (1,1,1,1)
+		_WaterColor("Water Color", COLOR) = (1,1,1,1)
+		_FoamColor("Foam Color", COLOR) = (1,1,1,1)
 		_Cutoff("Cutoff", float) = 0.5
+		_FoamCutoff("FoamCutoff", float) = 0.5
 	}
 	SubShader
 	{
@@ -42,8 +44,10 @@
 			
 			sampler2D _MainTex;
 			sampler2D _FluidTex;
-			float4 _Color;
+			float4 _WaterColor;
+			float4 _FoamColor;
 			float _Cutoff;
+			float _FoamCutoff;
 
 			fixed4 frag (v2f i) : SV_Target
 			{
@@ -56,8 +60,13 @@
 				
 				fixed4 fluid = tex2D(_FluidTex, i.uv);
 				
-				if (fluid.r > _Cutoff || fluid.g > _Cutoff || fluid.b > _Cutoff) {
-					col = _Color;
+				if (fluid.r > _Cutoff) {
+					if (fluid.r < _FoamCutoff) {
+						col = _FoamColor;
+					}
+					else {
+						col = _WaterColor;
+					}
 				}
 
 				return col;

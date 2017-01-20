@@ -6,8 +6,10 @@ using UnityEngine;
 public class FluidImageEffect : MonoBehaviour {
 
     [Header("Settings")]
-    public Color Color;
-    public float Cutoff;
+    public Color waterColor;
+    public Color foamColor;
+    public float cutoff;
+    public float foamCutoff;
 
     [Header("References")]
     public Shader fluidShader;
@@ -32,8 +34,10 @@ public class FluidImageEffect : MonoBehaviour {
     {
         fluidCamera.Render();
 
-        mat.SetColor("_Color", Color);
-        mat.SetFloat("_Cutoff", Cutoff);
+        mat.SetColor("_WaterColor", waterColor);
+        mat.SetColor("_FoamColor", foamColor);
+        mat.SetFloat("_Cutoff", cutoff);
+        mat.SetFloat("_FoamCutoff", foamCutoff);
         mat.SetTexture("_FluidTex", rt);
 
         Graphics.Blit(src, dest, mat);
