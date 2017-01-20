@@ -2,15 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FluidShadeer : MonoBehaviour {
+[RequireComponent(typeof(Camera))]
+public class FluidImageEffect : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public Shader fluidShader;
+    public Color col;
+
+    private Camera cam;
+    private Material mat;
+    
+    void Awake()
+    {
+        cam = GetComponent<Camera>();
+        mat = new Material(fluidShader);
+    }
+
+    void Start()
+    {
+        cam.enabled = true;
+        mat.SetColor("_Color", col);
+    }
+
+    void OnRenderImage(RenderTexture src, RenderTexture dest)
+    {
+        Graphics.Blit(src, dest, mat);
+    }
 }
