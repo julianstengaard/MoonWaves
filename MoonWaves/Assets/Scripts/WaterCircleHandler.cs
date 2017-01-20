@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WaterCircleHandler : MonoBehaviour {
-
+    
     [Header("Settings")]
     public int CirclesToSpawn;
     public float PullForcePlanet;
     public float PullForceMoon;
-    public float maxDistFromPlanet;
+    public float outOfBoundsDist;
+
+    [Header("OutOfBounds")]
+    public float oobPlanetForceMod;
+    public float oobParticleDrag;
 
     [Header("References")]
     public GameObject CirclePrefab;
@@ -40,24 +44,27 @@ public class WaterCircleHandler : MonoBehaviour {
 	    count++;
 	    if (count%1 == 0) {
 	        for (int i = 0; i < CirclesToSpawn; i++) {
-	            ApplyForces(Circles[i]);
+                ApplyForces(Circles[i]);
 	        }
 	    }
 	}
 
     private void ApplyForces(Rigidbody2D target) {
         Vector2 dirPlanet = ForceTargetPlanet.transform.position - target.transform.position;
-        bool getPulled = dirPlanet.magnitude < maxDistFromPlanet;
-        target.drag = getPulled ? .25f : 0;
+        bool outOfBounds = dirPlanet.magnitude > outOfBoundsDist;
+        target.drag = outOfBounds ? 0 : oobParticleDrag;
 
         Vector2 dirMoon = ForceTargetMoon.transform.position - target.transform.position;
 
-        target.AddForce(dirPlanet.normalized * PullForcePlanet + dirMoon.normalized * (getPulled ? PullForceMoon : 0));
+        target.AddForce(
+            dirPlanet.normalized * PullForcePlanet * (outOfBounds ? oobPlanetForceMod : 1) +        //Planet force
+            dirMoon.normalized * (outOfBounds ? 0 : PullForceMoon)                  //Moon force
+            );
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = new Color(0, 1, 0, .25f);
-        Gizmos.DrawSphere(ForceTargetPlanet.transform.position, maxDistFromPlanet);
+        Gizmos.DrawSphere(ForceTargetPlanet.transform.position, outOfBoundsDist);
     }
 }
