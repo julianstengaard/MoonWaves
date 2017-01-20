@@ -12,7 +12,8 @@ public class Move : MonoBehaviour {
 	void Update () {
         Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 	    targetPosition.z = 0f;
-        _rigidbody2D.MovePosition(targetPosition);
+	    transform.position = targetPosition;
+        //_rigidbody2D.MovePosition(targetPosition);
 
     }
 }

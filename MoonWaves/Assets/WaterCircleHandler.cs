@@ -6,9 +6,11 @@ public class WaterCircleHandler : MonoBehaviour {
     public int CirclesToSpawn;
     public GameObject CirclePrefab;
 
-    public GameObject ForceTarget;
+    public GameObject ForceTargetPlanet;
+    public GameObject ForceTargetMoon;
 
-    public float PullForce;
+    public float PullForcePlanet;
+    public float PullForceMoon;
 
     private Rigidbody2D[] Circles;
 
@@ -30,8 +32,9 @@ public class WaterCircleHandler : MonoBehaviour {
 	}
 
     private void ApplyForces(Rigidbody2D target) {
-        Vector2 dir = ForceTarget.transform.position - target.transform.position;
-        target.AddForce(dir * PullForce);
+        Vector2 dirPlanet = (ForceTargetPlanet.transform.position - target.transform.position).normalized;
+        Vector2 dirMoon = (ForceTargetMoon.transform.position - target.transform.position).normalized;
+        target.AddForce(dirPlanet * PullForcePlanet + dirMoon * PullForceMoon);
     }
 
     private void SpawnCircles(int count) {
