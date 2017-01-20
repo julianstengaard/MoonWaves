@@ -19,10 +19,15 @@ public class MoonMover : MonoBehaviour {
     private float _currentInertia;
     private float _currentAngle;
 
-    private float _bouncing;
+    private bool _bouncing;
+    private float _bounceDirection;
     private float _bounceTimer;
 
-	// Use this for initialization
+    public float CurrentAngle {
+        get { return _currentAngle; }
+    }
+
+    // Use this for initialization
 	void Start () {
 	    _curveDuration = SpeedCurve[SpeedCurve.length - 1].time;
 	    _currentAngle = InitialPIAngle * Mathf.PI;
@@ -30,14 +35,22 @@ public class MoonMover : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    float horizontal = Input.GetAxis(InputAxisName);
-	    if (Mathf.Abs(horizontal) > 0.1f) {
-            UpdateInertia(horizontal, true);
-        } else {
-            UpdateInertia(horizontal, false);
-        }
-        UpdateAngle();
-        SetPosition(_currentAngle);
+	    if (_bouncing) {
+	        _currentAngle += BounceCurve.Evaluate(_bounceTimer) * _bounceDirection * Time.deltaTime;
+	        _bounceTimer += Time.deltaTime;
+	        if (_bounceTimer >= BounceCurve[BounceCurve.length - 1].time) {
+	            _bouncing = false;
+	        }
+	    } else {
+	        float horizontal = Input.GetAxis(InputAxisName);
+	        if (Mathf.Abs(horizontal) > 0.1f) {
+	            UpdateInertia(horizontal, true);
+	        } else {
+	            UpdateInertia(horizontal, false);
+	        }
+	        UpdateAngle();
+	    }
+	    SetPosition(_currentAngle);
     }
 
     private void UpdateInertia(float direction, bool moving) {
@@ -57,7 +70,7 @@ public class MoonMover : MonoBehaviour {
         _currentAngle += Mathf.Sign(_currentInertia) * SpeedCurve.Evaluate(_currentInertia) * Time.deltaTime;
         if (_currentAngle >= Mathf.PI * 2f) {
             _currentAngle -= Mathf.PI * 2f;
-        } else if (_currentAngle <= -Mathf.PI * 2f) {
+        } else if (_currentAngle <= 0f) {
             _currentAngle += Mathf.PI * 2f;
         }
     }
@@ -68,10 +81,33 @@ public class MoonMover : MonoBehaviour {
         transform.position = new Vector3(xPos, yPos) * Distance;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (!collision.isTrigger) {
+    public void StartBounce(MoonMover otherMoon) {
+        if (_bouncing) {
             return;
         }
-        print("lol");
+        float dir = 0f;
+        if (otherMoon.CurrentAngle > _currentAngle) {
+            dir = -1f;
+            if (Mathf.Abs(otherMoon.CurrentAngle - _currentAngle) > Mathf.PI) {
+                dir = -dir;
+            }
+        } else {
+            dir = 1f;
+        }
+        SetBounceDirectionAndStart(dir);
+        otherMoon.SetBounceDirectionAndStart(-dir);
+    }
+
+    public void SetBounceDirectionAndStart(float dir) {
+        _bounceDirection = dir;
+        _bouncing = true;
+        _bounceTimer = 0f;
+        _currentInertia = 0f;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (!_bouncing) {
+            StartBounce(collision.gameObject.GetComponent<MoonMover>());
+        }
     }
 }
