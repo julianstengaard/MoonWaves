@@ -28,8 +28,8 @@ public class WaterParticle : MonoBehaviour {
 			return sum / waveCollisionCountBuffer.Length;
 		}
 	}
-	
-	//non-static stuff
+
+    //non-static stuff
 	public float waveHeightThreshold;
 
 	private int frameCollisionCount;
@@ -54,6 +54,7 @@ public class WaterParticle : MonoBehaviour {
 		//waveCollisionCountBuffer[waveBufferIndex] += frameCollisionCount;
 		frameCollisionCount = 0;
 	}
+
 
 	//private void OnCollisionStay2D(Collision2D collision)
 	//{
