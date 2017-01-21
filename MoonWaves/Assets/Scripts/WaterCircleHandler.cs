@@ -20,7 +20,7 @@ public class WaterCircleHandler : MonoBehaviour {
     [Header("References")]
     public GameObject CirclePrefab;
     public GameObject ForceTargetPlanet;
-    public GameObject[] ForceTargetMoon;
+    public Moon[] ForceTargetMoon;
 
     private Rigidbody2D[] Circles;
 
@@ -54,19 +54,19 @@ public class WaterCircleHandler : MonoBehaviour {
         Vector2 dirPlanet = ForceTargetPlanet.transform.position - target.transform.position;
         Vector2 moonForces = Vector2.zero;
         for (int i = 0; i < ForceTargetMoon.Length; i++) {
+            if (!ForceTargetMoon[i].Sucking) {
+                continue;
+            }
             Vector2 moonDir = ForceTargetMoon[i].transform.position - target.transform.position;
             moonForces += moonDir.normalized * MoonForceFalloff.Evaluate(Mathf.InverseLerp(0f, MoonForceRange, moonDir.magnitude)) * PullForceMoon;
         }
 
         bool outOfBounds = dirPlanet.magnitude > outOfBoundsDist;
         target.drag = outOfBounds ? 0 : oobParticleDrag;
-        
 
+        Vector2 planetForce = dirPlanet.normalized*PullForcePlanet*(outOfBounds ? oobPlanetForceMod : 1);
 
-        target.AddForce(
-            dirPlanet.normalized * PullForcePlanet * (outOfBounds ? oobPlanetForceMod : 1) +        //Planet force
-            moonForces                  //Moon force
-            );
+        target.AddForce(planetForce + moonForces);
     }
 
     void OnDrawGizmos() {
