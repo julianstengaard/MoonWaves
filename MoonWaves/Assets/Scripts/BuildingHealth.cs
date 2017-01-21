@@ -16,6 +16,7 @@ public class BuildingHealth : MonoBehaviour {
 	public int HitThreshold1;
 	public int HitThreshold2;
 	public int HitThreshold3;
+	public StuckBallMover stuckBallMover;
 
 	private bool isDead;
 	private int spriteIndex;
@@ -59,9 +60,10 @@ public class BuildingHealth : MonoBehaviour {
 
 	private void UpdateSprite()
 	{
+		if (spriteIndex >= states.Length) return;
+
 		if (currentHealth < nextChange)
 		{
-			
 			states[spriteIndex].gameObject.SetActive(false);
 			spriteIndex++;
 
@@ -111,23 +113,7 @@ public class BuildingHealth : MonoBehaviour {
 			HitCountOverThreshold3++;
 			currentHealth -= 1f;
 		}
-	}
 
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-		HitCount++;
-		if (collision.relativeVelocity.sqrMagnitude > _hitThreshold1Sqr)
-		{
-			HitCountOverThreshold1++;
-		}
-		if (collision.relativeVelocity.sqrMagnitude > _hitThreshold2Sqr)
-		{
-			HitCountOverThreshold2++;
-		}
-		if (collision.relativeVelocity.sqrMagnitude > _hitThreshold3Sqr)
-		{
-			HitCountOverThreshold3++;
-		}
-		//AverageHitSpeed = (AverageHitSpeed * HitCount + collision.relativeVelocity.magnitude)/ (float) (HitCount + 1);
+		stuckBallMover.RemoveBall(collision.gameObject);
 	}
 }
