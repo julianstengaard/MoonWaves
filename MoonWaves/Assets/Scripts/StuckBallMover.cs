@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StuckBallMover : MonoBehaviour {
     private Dictionary<GameObject, float> _ballsFadeTime = new Dictionary<GameObject, float>();
+	public float fizzleTime;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +18,7 @@ public class StuckBallMover : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (!_ballsFadeTime.ContainsKey(collision.gameObject)) {
-            _ballsFadeTime.Add(collision.gameObject, Time.realtimeSinceStartup + Random.Range(2f, 6f));
+            _ballsFadeTime.Add(collision.gameObject, Time.realtimeSinceStartup + fizzleTime);
         }
     }
 
@@ -37,6 +38,12 @@ public class StuckBallMover : MonoBehaviour {
         _ballsFadeTime.Remove(collision.gameObject);
     }
 
+	public void RemoveBall(GameObject ball)
+	{
+		if (_ballsFadeTime.ContainsKey(ball)) return;
+		_ballsFadeTime.Add(ball, Time.realtimeSinceStartup + fizzleTime);
+		StartCoroutine(BallFader(ball));
+	}
     private IEnumerator BallFader(GameObject ball) {
         Vector3 baseScale = ball.transform.localScale;
         _ballsFadeTime.Remove(ball);
