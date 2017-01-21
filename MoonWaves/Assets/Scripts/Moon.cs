@@ -123,6 +123,9 @@ public class Moon : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (!_bouncing) {
+			Moon moon = collision.gameObject.GetComponent<Moon>();
+			if (moon == null) return;
+
             StartBounce(collision.gameObject.GetComponent<Moon>());
         }
     }
