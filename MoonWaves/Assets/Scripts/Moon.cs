@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoonMover : MonoBehaviour {
+public class Moon : MonoBehaviour {
     public string InputAxisName;
+    public string InputSuckName;
+
     public float InitialPIAngle;
 
     public GameObject Anchor;
@@ -23,8 +25,14 @@ public class MoonMover : MonoBehaviour {
     private float _bounceDirection;
     private float _bounceTimer;
 
+    private bool _sucking;
+
     public float CurrentAngle {
         get { return _currentAngle; }
+    }
+
+    public bool Sucking {
+        get { return _sucking; }
     }
 
     // Use this for initialization
@@ -35,6 +43,12 @@ public class MoonMover : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	    if (Input.GetAxis(InputSuckName) > 0f) {
+	        _sucking = true;
+	    } else {
+	        _sucking = false;
+	    }
+
 	    if (_bouncing) {
 	        _currentAngle += BounceCurve.Evaluate(_bounceTimer) * _bounceDirection * Time.deltaTime;
 	        _bounceTimer += Time.deltaTime;
@@ -78,10 +92,10 @@ public class MoonMover : MonoBehaviour {
     private void SetPosition(float angle) {
         float xPos = Mathf.Cos(angle);
         float yPos = Mathf.Sin(angle);
-        transform.position = new Vector3(xPos, yPos) * Distance;
+        transform.position = new Vector3(xPos, yPos) * Distance + Anchor.transform.position;
     }
 
-    public void StartBounce(MoonMover otherMoon) {
+    public void StartBounce(Moon otherMoon) {
         if (_bouncing) {
             return;
         }
@@ -107,7 +121,7 @@ public class MoonMover : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (!_bouncing) {
-            StartBounce(collision.gameObject.GetComponent<MoonMover>());
+            StartBounce(collision.gameObject.GetComponent<Moon>());
         }
     }
 }
