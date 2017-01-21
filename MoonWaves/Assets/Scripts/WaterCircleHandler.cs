@@ -70,11 +70,16 @@ public class WaterCircleHandler : MonoBehaviour {
         target.AddForce(planetForce + (outOfBounds ? Vector2.zero : moonForces));
     }
 
-    void OnDrawGizmos() {
-        Gizmos.color = new Color(0, 1, 0, .25f);
-        Gizmos.DrawSphere(ForceTargetPlanet.transform.position, outOfBoundsDist);
-        foreach (var moon in ForceTargetMoon) {
-            Gizmos.DrawSphere(moon.transform.position, MoonForceRange);
-        }
-    }
+	void OnDrawGizmos()
+	{
+#if UNITY_EDITOR
+		if (UnityEditor.Selection.activeGameObject != gameObject) return;
+#endif
+		Gizmos.color = new Color(0, 1, 0, .25f);
+		Gizmos.DrawSphere(ForceTargetPlanet.transform.position, outOfBoundsDist);
+		foreach (var moon in ForceTargetMoon)
+		{
+			Gizmos.DrawSphere(moon.transform.position, MoonForceRange);
+		}
+	}
 }
