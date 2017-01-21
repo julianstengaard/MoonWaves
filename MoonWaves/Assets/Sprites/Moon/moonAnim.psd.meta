@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 31dd073b8d54a8f4a883706e9a454f01
-timeCreated: 1485001259
+timeCreated: 1485022966
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -12,6 +12,21 @@ TextureImporter:
     21300010: moonAnim_5
     21300012: moonAnim_6
     21300014: moonAnim_7
+    21300016: moonAnim_8
+    21300018: moonAnim_9
+    21300020: moonAnim_10
+    21300022: moonAnim_11
+    21300024: moonAnim_12
+    21300026: moonAnim_13
+    21300028: moonAnim_14
+    21300030: moonAnim_15
+    21300032: moonAnim_16
+    21300034: moonAnim_17
+    21300036: moonAnim_18
+    21300038: moonAnim_19
+    21300040: moonAnim_20
+    21300042: moonAnim_21
+    21300044: moonAnim_22
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -105,8 +120,8 @@ TextureImporter:
       name: moonAnim_0
       rect:
         serializedVersion: 2
-        x: 69
-        y: 5018
+        x: 45
+        y: 7523
         width: 1433
         height: 881
       alignment: 0
@@ -118,8 +133,8 @@ TextureImporter:
       name: moonAnim_1
       rect:
         serializedVersion: 2
-        x: 1575
-        y: 5028
+        x: 1563
+        y: 7545
         width: 1308
         height: 845
       alignment: 0
@@ -132,7 +147,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3014
-        y: 5014
+        y: 7555
         width: 1420
         height: 874
       alignment: 0
@@ -144,8 +159,8 @@ TextureImporter:
       name: moonAnim_3
       rect:
         serializedVersion: 2
-        x: 4515
-        y: 5022
+        x: 4491
+        y: 7551
         width: 1396
         height: 869
       alignment: 0
@@ -157,8 +172,8 @@ TextureImporter:
       name: moonAnim_4
       rect:
         serializedVersion: 2
-        x: 5950
-        y: 5026
+        x: 5926
+        y: 7555
         width: 1336
         height: 877
       alignment: 0
@@ -170,8 +185,8 @@ TextureImporter:
       name: moonAnim_5
       rect:
         serializedVersion: 2
-        x: 7344
-        y: 5047
+        x: 7405
+        y: 7576
         width: 1329
         height: 912
       alignment: 0
@@ -183,8 +198,8 @@ TextureImporter:
       name: moonAnim_6
       rect:
         serializedVersion: 2
-        x: 76
-        y: 4129
+        x: 52
+        y: 6670
         width: 1430
         height: 841
       alignment: 0
@@ -196,10 +211,205 @@ TextureImporter:
       name: moonAnim_7
       rect:
         serializedVersion: 2
-        x: 1575
-        y: 4133
+        x: 1563
+        y: 6699
         width: 1303
         height: 837
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: moonAnim_8
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 4811
+        width: 1574
+        height: 1282
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: moonAnim_9
+      rect:
+        serializedVersion: 2
+        x: 1797
+        y: 4784
+        width: 1547
+        height: 1273
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: moonAnim_10
+      rect:
+        serializedVersion: 2
+        x: 3418
+        y: 4820
+        width: 1432
+        height: 1326
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: moonAnim_11
+      rect:
+        serializedVersion: 2
+        x: 4909
+        y: 4770
+        width: 1599
+        height: 1520
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: moonAnim_12
+      rect:
+        serializedVersion: 2
+        x: 6597
+        y: 4770
+        width: 1804
+        height: 1680
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: moonAnim_13
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 2807
+        width: 1871
+        height: 1925
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: moonAnim_14
+      rect:
+        serializedVersion: 2
+        x: 2072
+        y: 2777
+        width: 2032
+        height: 1962
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: moonAnim_15
+      rect:
+        serializedVersion: 2
+        x: 4474
+        y: 2637
+        width: 2021
+        height: 1988
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: moonAnim_16
+      rect:
+        serializedVersion: 2
+        x: 6564
+        y: 2647
+        width: 2107
+        height: 1968
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: moonAnim_17
+      rect:
+        serializedVersion: 2
+        x: 8695
+        y: 2703
+        width: 2110
+        height: 1925
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: moonAnim_18
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 565
+        width: 1607
+        height: 1407
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: moonAnim_19
+      rect:
+        serializedVersion: 2
+        x: 2627
+        y: 565
+        width: 1708
+        height: 1407
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: moonAnim_20
+      rect:
+        serializedVersion: 2
+        x: 4398
+        y: 603
+        width: 1784
+        height: 1357
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: moonAnim_21
+      rect:
+        serializedVersion: 2
+        x: 6244
+        y: 804
+        width: 1570
+        height: 1143
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: moonAnim_22
+      rect:
+        serializedVersion: 2
+        x: 7902
+        y: 829
+        width: 1759
+        height: 1118
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

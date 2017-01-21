@@ -8,6 +8,7 @@ public class Moon : MonoBehaviour {
 
     public string InputAxisName;
     public string InputSuckName;
+	public Animator anim;
 
     public float InitialPIAngle;
 
@@ -47,9 +48,11 @@ public class Moon : MonoBehaviour {
 	void Update () {
 	    if (Input.GetAxis(InputSuckName) > 0f) {
 	        _sucking = true;
+			anim.SetBool("suckFromEarth", true);
 	    } else {
 	        _sucking = false;
-	    }
+			anim.SetBool("suckFromEarth", false);
+		}
 
 	    if (_bouncing) {
 	        _currentAngle += BounceCurve.Evaluate(_bounceTimer) * _bounceDirection * Time.deltaTime;
