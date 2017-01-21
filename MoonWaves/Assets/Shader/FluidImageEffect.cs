@@ -10,6 +10,9 @@ public class FluidImageEffect : MonoBehaviour {
     public Color foamColor;
     public float cutoff;
     public float foamCutoff;
+	[Range(0, 1)]
+	public float foamFadeInDist;
+	public float foamFadeDist;
 
     [Header("References")]
     public Shader fluidShader;
@@ -34,12 +37,14 @@ public class FluidImageEffect : MonoBehaviour {
     {
         fluidCamera.Render();
 
-        mat.SetColor("_WaterColor", waterColor);
+		mat.SetTexture("_FluidTex", rt);
+		mat.SetColor("_WaterColor", waterColor);
         mat.SetColor("_FoamColor", foamColor);
         mat.SetFloat("_Cutoff", cutoff);
         mat.SetFloat("_FoamCutoff", foamCutoff);
-        mat.SetTexture("_FluidTex", rt);
+		mat.SetFloat("_FoamFadeInDist", foamFadeInDist);
+		mat.SetFloat("_FoamMaxDist", foamFadeInDist + foamFadeDist);
 
-        Graphics.Blit(src, dest, mat);
+		Graphics.Blit(src, dest, mat);
     }
 }

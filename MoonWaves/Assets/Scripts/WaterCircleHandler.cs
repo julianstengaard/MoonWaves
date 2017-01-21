@@ -64,7 +64,7 @@ public class WaterCircleHandler : MonoBehaviour {
         
         target.AddForce(
             dirPlanet.normalized * PullForcePlanet * (outOfBounds ? oobPlanetForceMod : 1) +        //Planet force
-            dirMoon1Scaled + dirMoon2Scaled                  //Moon force
+            dirMoon1Scaled + dirMoon2Scaled                                                         //Moon force
             );
     }
 
