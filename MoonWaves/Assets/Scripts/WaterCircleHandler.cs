@@ -67,7 +67,7 @@ public class WaterCircleHandler : MonoBehaviour {
 
         Vector2 planetForce = dirPlanet.normalized*PullForcePlanet*(outOfBounds ? oobPlanetForceMod : 1);
 
-        target.AddForce(planetForce + moonForces);
+        target.AddForce(planetForce + (outOfBounds ? Vector2.zero : moonForces));
     }
 
     void OnDrawGizmos() {
