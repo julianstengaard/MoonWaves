@@ -35,7 +35,8 @@ public class WaterCircleHandler : MonoBehaviour {
         Circles = new Rigidbody2D[CirclesToSpawn];
 
         for (int i = 0; i < count; i++) {
-            Rigidbody2D g = Instantiate(CirclePrefab, new Vector2(Random.Range(-10f, 10f), Random.Range(-5f, 5f)), Quaternion.identity, transform).GetComponent<Rigidbody2D>();
+            float randomAngle = Random.Range(0f, Mathf.PI*2f);
+            Rigidbody2D g = Instantiate(CirclePrefab, new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle)) * 3f, Quaternion.identity, transform).GetComponent<Rigidbody2D>();
             Circles[i] = g;
         }
     }

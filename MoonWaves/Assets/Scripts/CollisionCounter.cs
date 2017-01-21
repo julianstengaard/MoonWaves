@@ -18,7 +18,7 @@ public class CollisionCounter : MonoBehaviour {
     }
 
     public void AddCollision(float heightSqr) {
-        if (heightSqr >= HeightThreshold) {
+        if (heightSqr >= _heightThresholdSqr) {
             _collisionCounter++;
         }
     }
