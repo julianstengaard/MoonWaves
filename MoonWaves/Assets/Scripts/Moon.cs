@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Moon : MonoBehaviour {
+	public enum Players { PlayerOne, PlayerTwo }
+
     public string InputAxisName;
     public string InputSuckName;
 

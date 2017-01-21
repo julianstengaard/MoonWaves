@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Castle : MonoBehaviour {
-    public TextMesh Text;
-
+	public Moon.Players player;
+	public TextMesh Text;
     public float Health = 100f;
 
     public int HitCount;
@@ -41,15 +41,16 @@ public class Castle : MonoBehaviour {
         if (collision.attachedRigidbody.velocity.sqrMagnitude > _hitThreshold1Sqr) {
             HitCountOverThreshold1++;
             Health -= 0.05f;
-        }
+			AudioManager.PlayWaveCrash(player);
+		}
         if (collision.attachedRigidbody.velocity.sqrMagnitude > _hitThreshold2Sqr) {
             HitCountOverThreshold2++;
             Health -= 0.2f;
-        }
+		}
         if (collision.attachedRigidbody.velocity.sqrMagnitude > _hitThreshold3Sqr) {
             HitCountOverThreshold3++;
             Health -= 1f;
-        }
+		}
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
