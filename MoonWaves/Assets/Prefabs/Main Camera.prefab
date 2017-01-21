@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 81184446863733054}
   - component: {fileID: 114569942349453776}
   - component: {fileID: 114401679992406654}
-  - component: {fileID: 114158474387595940}
+  - component: {fileID: 114364760348456034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -158,28 +158,29 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1163713196263150}
   m_Enabled: 1
---- !u!114 &114158474387595940
+--- !u!114 &114364760348456034
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1163713196263150}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd6d4281e5d7cd44d8c6e38bc2c1b8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 0
-  intensity: 0.036
-  chromaticAberration: 0.2
+  intensity: 0
+  chromaticAberration: 0
   axialAberration: 0.5
   blur: 0
   blurSpread: 0.75
   luminanceDependency: 0.25
   blurDistance: 2.5
-  vignetteShader: {fileID: 0}
-  separableBlurShader: {fileID: 0}
-  chromAberrationShader: {fileID: 0}
+  vignetteShader: {fileID: 4800000, guid: 627943dc7a9a74286b70a4f694a0acd5, type: 3}
+  separableBlurShader: {fileID: 4800000, guid: e97c14fbb5ea04c3a902cc533d7fc5d1, type: 3}
+  chromAberrationShader: {fileID: 4800000, guid: 2b4f29398d9484ccfa9fd220449f5eee,
+    type: 3}
 --- !u!114 &114401679992406654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -191,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43136dd37d76e04ab8c027a97d899ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera2: {fileID: 0}
+  Camera2: {fileID: 20546447139736030}
 --- !u!114 &114569942349453776
 MonoBehaviour:
   m_ObjectHideFlags: 1

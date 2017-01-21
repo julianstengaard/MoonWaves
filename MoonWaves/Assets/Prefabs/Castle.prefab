@@ -1195,7 +1195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 0
-  health: 100
+  health: 200
   states:
   - {fileID: 212436134477957658}
   - {fileID: 212947455682866730}
@@ -1228,7 +1228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 0
-  health: 50
+  health: 70
   states:
   - {fileID: 212768717285295498}
   - {fileID: 212472372071545094}
@@ -1260,7 +1260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7713713a78f7c4cb23cf45e0ffde24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fizzleTime: 0.5
+  fizzleTime: 1
 --- !u!114 &114966625896941554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1273,7 +1273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 0
-  health: 50
+  health: 70
   states:
   - {fileID: 212214406239112180}
   - {fileID: 212712336945020490}

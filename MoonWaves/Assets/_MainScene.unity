@@ -91,53 +91,6 @@ NavMeshSettings:
     cellSize: 0.16666667
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!21 &10088776
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 2DxFX/Standard/Wave
-  m_Shader: {fileID: 4800000, guid: a3824d7b00ea82d4cb92e05c44536ddc, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-    - first:
-        name: _MainTex
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - first:
-        name: _Alpha
-      second: 0
-    - first:
-        name: _DistanceX
-      second: 0.01
-    - first:
-        name: _DistanceY
-      second: 0.01
-    - first:
-        name: _OffsetX
-      second: 2
-    - first:
-        name: _OffsetY
-      second: 3
-    - first:
-        name: _WaveTimeX
-      second: 3.8233457
-    - first:
-        name: _WaveTimeY
-      second: 5.5733356
-    m_Colors:
-    - first:
-        name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &128704860 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1397125026426510, guid: 5ed498feeda540445848ad8bbb849e9e,
@@ -280,53 +233,6 @@ Prefab:
     - {fileID: 212801550027299532, guid: 5ed498feeda540445848ad8bbb849e9e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5ed498feeda540445848ad8bbb849e9e, type: 2}
   m_IsPrefabParent: 0
---- !u!21 &332896726
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 2DxFX/Standard/Wave
-  m_Shader: {fileID: 4800000, guid: a3824d7b00ea82d4cb92e05c44536ddc, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-    - first:
-        name: _MainTex
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - first:
-        name: _Alpha
-      second: 0
-    - first:
-        name: _DistanceX
-      second: 0.01
-    - first:
-        name: _DistanceY
-      second: 0.01
-    - first:
-        name: _OffsetX
-      second: 2
-    - first:
-        name: _OffsetY
-      second: 3
-    - first:
-        name: _WaveTimeX
-      second: 2.1201959
-    - first:
-        name: _WaveTimeY
-      second: 1.2721176
-    m_Colors:
-    - first:
-        name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &474082117
 Prefab:
   m_ObjectHideFlags: 0
@@ -449,6 +355,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: a7ab8823d28c15f40a52db952f5a0a1d,
         type: 3}
+    - target: {fileID: 114628259157816086, guid: 0d58572c30dc9b9418813523af736206,
+        type: 2}
+      propertyPath: fizzleTime
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d58572c30dc9b9418813523af736206, type: 2}
   m_IsPrefabParent: 0
@@ -507,11 +418,11 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1419945182}
+      objectReference: {fileID: 1801530164}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23348f8ec9a51184f8e2c5ac60054163, type: 2}
   m_IsPrefabParent: 0
---- !u!21 &588392578
+--- !u!21 &569066325
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -550,10 +461,57 @@ Material:
       second: 19.6
     - first:
         name: _WaveTimeX
-      second: 3.604487
+      second: 3.921594
     - first:
         name: _WaveTimeY
-      second: 5.264906
+      second: 4.979783
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 1, g: 1, b: 1, a: 1}
+--- !u!21 &576856314
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 2DxFX/Standard/Wave
+  m_Shader: {fileID: 4800000, guid: a3824d7b00ea82d4cb92e05c44536ddc, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: _Alpha
+      second: 0
+    - first:
+        name: _DistanceX
+      second: 0.01
+    - first:
+        name: _DistanceY
+      second: 0.01
+    - first:
+        name: _OffsetX
+      second: 2
+    - first:
+        name: _OffsetY
+      second: 3
+    - first:
+        name: _WaveTimeX
+      second: 6.1624603
+    - first:
+        name: _WaveTimeY
+      second: 0
     m_Colors:
     - first:
         name: _Color
@@ -735,7 +693,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10088776}
+      objectReference: {fileID: 1433608963}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23348f8ec9a51184f8e2c5ac60054163, type: 2}
   m_IsPrefabParent: 0
@@ -828,94 +786,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4126908059026714, guid: 0d58572c30dc9b9418813523af736206,
     type: 2}
   m_PrefabInternal: {fileID: 524025146}
---- !u!21 &934136713
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 2DxFX/Standard/Wave
-  m_Shader: {fileID: 4800000, guid: a3824d7b00ea82d4cb92e05c44536ddc, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-    - first:
-        name: _MainTex
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - first:
-        name: _Alpha
-      second: 0.026000023
-    - first:
-        name: _DistanceX
-      second: 0.01
-    - first:
-        name: _DistanceY
-      second: 0.01
-    - first:
-        name: _OffsetX
-      second: 18.5
-    - first:
-        name: _OffsetY
-      second: 19.6
-    - first:
-        name: _WaveTimeX
-      second: 3.968194
-    - first:
-        name: _WaveTimeY
-      second: 5.0357833
-    m_Colors:
-    - first:
-        name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
---- !u!21 &969313760
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 2DxFX/Standard/BlackHole
-  m_Shader: {fileID: 4800000, guid: df6ed0d676613f74b873ec673f5ab9b2, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-    - first:
-        name: _MainTex
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - first:
-        name: _Alpha
-      second: 0
-    - first:
-        name: _Distortion
-      second: 0.2
-    - first:
-        name: _Hole
-      second: 0
-    - first:
-        name: _Size
-      second: 0
-    - first:
-        name: _Speed
-      second: 0.2
-    m_Colors:
-    - first:
-        name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &994621782 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1195872759866994, guid: 5460a9bd61064c143a155ed4dd334661,
@@ -1011,8 +881,14 @@ MonoBehaviour:
       outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
-      time: 1
+      time: 0.97322345
       value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1063,7 +939,7 @@ MonoBehaviour:
   _DistanceX: 0.01
   _DistanceY: 0.01
   _WaveTimeX: 0
-  _WaveTimeY: 3.0559838
+  _WaveTimeY: 0.08954268
   AutoPlayWaveX: 1
   AutoPlaySpeedX: 5
   AutoPlayWaveY: 1
@@ -1119,8 +995,14 @@ MonoBehaviour:
       outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
-      time: 1
+      time: 0.97322345
       value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1171,8 +1053,8 @@ MonoBehaviour:
   _OffsetY: 3
   _DistanceX: 0.01
   _DistanceY: 0.01
-  _WaveTimeX: 4.8027654
-  _WaveTimeY: 2.8816595
+  _WaveTimeX: 3.9019601
+  _WaveTimeY: 0.034757342
   AutoPlayWaveX: 1
   AutoPlaySpeedX: 5
   AutoPlayWaveY: 1
@@ -1180,7 +1062,7 @@ MonoBehaviour:
   AutoRandom: 1
   AutoRandomRange: 10
   ShaderChange: 0
---- !u!21 &1419945182
+--- !u!21 &1433608963
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -1219,10 +1101,10 @@ Material:
       second: 3
     - first:
         name: _WaveTimeX
-      second: 0.094063506
+      second: 2.9185493
     - first:
         name: _WaveTimeY
-      second: 5.0718126
+      second: 4.8071136
     m_Colors:
     - first:
         name: _Color
@@ -1288,8 +1170,14 @@ MonoBehaviour:
       outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
-      time: 1
+      time: 0.97322345
       value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1384,7 +1272,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 969313760}
+  - {fileID: 1895559914}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1419,53 +1307,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1555364920
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 2DxFX/Standard/Wave
-  m_Shader: {fileID: 4800000, guid: a3824d7b00ea82d4cb92e05c44536ddc, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-    - first:
-        name: _MainTex
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - first:
-        name: _Alpha
-      second: 0
-    - first:
-        name: _DistanceX
-      second: 0.01
-    - first:
-        name: _DistanceY
-      second: 0.01
-    - first:
-        name: _OffsetX
-      second: 2
-    - first:
-        name: _OffsetY
-      second: 3
-    - first:
-        name: _WaveTimeX
-      second: 4.435709
-    - first:
-        name: _WaveTimeY
-      second: 1.3598636
-    m_Colors:
-    - first:
-        name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1583702176 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1397125026426510, guid: 5ed498feeda540445848ad8bbb849e9e,
@@ -1579,6 +1420,141 @@ Material:
     - first:
         name: _Color
       second: {r: 1, g: 1, b: 1, a: 1}
+--- !u!21 &1801530164
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 2DxFX/Standard/Wave
+  m_Shader: {fileID: 4800000, guid: a3824d7b00ea82d4cb92e05c44536ddc, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: _Alpha
+      second: 0
+    - first:
+        name: _DistanceX
+      second: 0.01
+    - first:
+        name: _DistanceY
+      second: 0.01
+    - first:
+        name: _OffsetX
+      second: 2
+    - first:
+        name: _OffsetY
+      second: 3
+    - first:
+        name: _WaveTimeX
+      second: 0
+    - first:
+        name: _WaveTimeY
+      second: 5.3365374
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 1, g: 1, b: 1, a: 1}
+--- !u!21 &1895559914
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 2DxFX/Standard/BlackHole
+  m_Shader: {fileID: 4800000, guid: df6ed0d676613f74b873ec673f5ab9b2, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: _Alpha
+      second: 0
+    - first:
+        name: _Distortion
+      second: 0.2
+    - first:
+        name: _Hole
+      second: 0
+    - first:
+        name: _Size
+      second: 0
+    - first:
+        name: _Speed
+      second: 0.2
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 1, g: 1, b: 1, a: 1}
+--- !u!21 &1899995911
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 2DxFX/Standard/Wave
+  m_Shader: {fileID: 4800000, guid: a3824d7b00ea82d4cb92e05c44536ddc, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: _Alpha
+      second: 0
+    - first:
+        name: _DistanceX
+      second: 0.01
+    - first:
+        name: _DistanceY
+      second: 0.01
+    - first:
+        name: _OffsetX
+      second: 2
+    - first:
+        name: _OffsetY
+      second: 3
+    - first:
+        name: _WaveTimeX
+      second: 3.8440313
+    - first:
+        name: _WaveTimeY
+      second: 0
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &1965274071
 Prefab:
   m_ObjectHideFlags: 0
@@ -1622,7 +1598,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 934136713}
+      objectReference: {fileID: 2037649307}
     - target: {fileID: 212170318965120240, guid: 5460a9bd61064c143a155ed4dd334661,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
@@ -1637,6 +1613,58 @@ Prefab:
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 58518368877312018, guid: 5460a9bd61064c143a155ed4dd334661,
+        type: 2}
+      propertyPath: m_Radius
+      value: 1.12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5460a9bd61064c143a155ed4dd334661, type: 2}
   m_IsPrefabParent: 0
+--- !u!21 &2037649307
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 2DxFX/Standard/Wave
+  m_Shader: {fileID: 4800000, guid: a3824d7b00ea82d4cb92e05c44536ddc, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: _Alpha
+      second: 0.026000023
+    - first:
+        name: _DistanceX
+      second: 0.01
+    - first:
+        name: _DistanceY
+      second: 0.01
+    - first:
+        name: _OffsetX
+      second: 18.5
+    - first:
+        name: _OffsetY
+      second: 19.6
+    - first:
+        name: _WaveTimeX
+      second: 4.7448606
+    - first:
+        name: _WaveTimeY
+      second: 5.9691167
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 1, g: 1, b: 1, a: 1}
