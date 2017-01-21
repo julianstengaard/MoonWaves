@@ -39,7 +39,7 @@ public class CameraEffects : MonoBehaviour {
         TweenParms parms = new TweenParms();
         parms.Prop("chromaticAberration", 0f); // Position tween
         parms.Ease(EaseType.EaseOutBounce); // Easing type
-        chromaTweener = HOTween.Shake(vignetteAndChromaticAberration, 1f, parms, 10f);
+        chromaTweener = HOTween.Shake(vignetteAndChromaticAberration, 1f, parms, 40f);
     }
 
     private void ResetChroma() {
