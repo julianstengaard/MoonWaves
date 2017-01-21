@@ -20,8 +20,7 @@ public class WaterCircleHandler : MonoBehaviour {
     [Header("References")]
     public GameObject CirclePrefab;
     public GameObject ForceTargetPlanet;
-    public GameObject ForceTargetMoon1;
-    public GameObject ForceTargetMoon2;
+    public GameObject[] ForceTargetMoon;
 
     private Rigidbody2D[] Circles;
 
@@ -53,25 +52,28 @@ public class WaterCircleHandler : MonoBehaviour {
 
     private void ApplyForces(Rigidbody2D target) {
         Vector2 dirPlanet = ForceTargetPlanet.transform.position - target.transform.position;
-        Vector2 dirMoon1 = ForceTargetMoon1.transform.position - target.transform.position;
-        Vector2 dirMoon2 = ForceTargetMoon2.transform.position - target.transform.position;
-
-        Vector2 dirMoon1Scaled = dirMoon1.normalized * MoonForceFalloff.Evaluate(Mathf.InverseLerp(0f, MoonForceRange, dirMoon1.magnitude)) * PullForceMoon;
-        Vector2 dirMoon2Scaled = dirMoon2.normalized * MoonForceFalloff.Evaluate(Mathf.InverseLerp(0f, MoonForceRange, dirMoon2.magnitude)) * PullForceMoon;
+        Vector2 moonForces = Vector2.zero;
+        for (int i = 0; i < ForceTargetMoon.Length; i++) {
+            Vector2 moonDir = ForceTargetMoon[i].transform.position - target.transform.position;
+            moonForces += moonDir.normalized * MoonForceFalloff.Evaluate(Mathf.InverseLerp(0f, MoonForceRange, moonDir.magnitude)) * PullForceMoon;
+        }
 
         bool outOfBounds = dirPlanet.magnitude > outOfBoundsDist;
         target.drag = outOfBounds ? 0 : oobParticleDrag;
         
+
+
         target.AddForce(
             dirPlanet.normalized * PullForcePlanet * (outOfBounds ? oobPlanetForceMod : 1) +        //Planet force
-            dirMoon1Scaled + dirMoon2Scaled                  //Moon force
+            moonForces                  //Moon force
             );
     }
 
     void OnDrawGizmos() {
         Gizmos.color = new Color(0, 1, 0, .25f);
         Gizmos.DrawSphere(ForceTargetPlanet.transform.position, outOfBoundsDist);
-        Gizmos.DrawSphere(ForceTargetMoon1.transform.position, MoonForceRange);
-        Gizmos.DrawSphere(ForceTargetMoon2.transform.position, MoonForceRange);
+        foreach (var moon in ForceTargetMoon) {
+            Gizmos.DrawSphere(moon.transform.position, MoonForceRange);
+        }
     }
 }

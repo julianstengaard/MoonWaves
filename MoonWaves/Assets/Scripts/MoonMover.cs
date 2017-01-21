@@ -78,7 +78,7 @@ public class MoonMover : MonoBehaviour {
     private void SetPosition(float angle) {
         float xPos = Mathf.Cos(angle);
         float yPos = Mathf.Sin(angle);
-        transform.position = new Vector3(xPos, yPos) * Distance;
+        transform.position = new Vector3(xPos, yPos) * Distance + Anchor.transform.position;
     }
 
     public void StartBounce(MoonMover otherMoon) {
