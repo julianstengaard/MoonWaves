@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 42c1a2d7a01789d4eb73e343fd2852fb
-timeCreated: 1485025557
+timeCreated: 1485031329
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,14 +8,14 @@ TextureImporter:
     21300002: SandTowerL_0
     21300004: SandTowerR_0
     21300006: SandCastle_1
-    21300008: SandCTowerL_1
+    21300008: SandTowerL_1
     21300010: SandTowerR_1
     21300012: SandCastle_2
     21300014: SandTowerL_2
     21300016: SandTowerR_2
     21300018: SandCastle_3
     21300020: SandTowerL_3
-    21300022: SandTower_3
+    21300022: SandTowerR_3
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -142,7 +142,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SandCTowerL_1
+      name: SandTowerL_1
       rect:
         serializedVersion: 2
         x: 191
@@ -233,7 +233,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SandTower_3
+      name: SandTowerR_3
       rect:
         serializedVersion: 2
         x: 479
