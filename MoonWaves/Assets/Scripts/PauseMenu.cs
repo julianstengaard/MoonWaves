@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour {
     private bool _pauseButtonReady;
 
     private bool _selectButtonReady;
+    private bool _clickButtonReady;
 
     private int _currentMenuOption;
 
@@ -26,14 +27,46 @@ public class PauseMenu : MonoBehaviour {
 	void Update () {
 		HandlePause();
         HandleSelect();
-	    
+	    HandlePress();
 	}
 
+    private void HandlePress() {
+        if (_clickButtonReady && Input.GetAxis("Fire1") > 0.5f) {
+            _clickButtonReady = false;
+            if (_currentMenuOption == 0) {
+                SetPauseState(false);
+                print("Resume");
+            }
+            if (_currentMenuOption == 1) {
+                //Restart
+                print("Restart");
+            }
+            if (_currentMenuOption == 2) {
+                //Main menu
+                print("Main");
+            }
+            if (_currentMenuOption == 3) {
+                //Exit
+                print("Exit");
+                Application.Quit();
+            }
+        }
+        if (!_clickButtonReady && Input.GetAxis("Fire1") <= 0.01f) {
+            _clickButtonReady = true;
+        }
+    }
+
     private void HandleSelect() {
-        if (_selectButtonReady && Input.GetAxis("Horizontal") > 0.5f) {
+        if (_selectButtonReady && Input.GetAxis("Horizontal") < -0.5f) {
             _selectButtonReady = false;
             SetFont(_currentMenuOption, false);
             _currentMenuOption = (_currentMenuOption + 1) % 4;
+            SetFont(_currentMenuOption, true);
+        } else if (_selectButtonReady && Input.GetAxis("Horizontal") > 0.5f) {
+            _selectButtonReady = false;
+            SetFont(_currentMenuOption, false);
+            _currentMenuOption = (_currentMenuOption == 0) ? 4 : _currentMenuOption;
+            _currentMenuOption = (_currentMenuOption - 1);
             SetFont(_currentMenuOption, true);
         }
 
@@ -54,13 +87,17 @@ public class PauseMenu : MonoBehaviour {
     } 
 
     private void SetFont(int option, bool selected) {
-        MenuOptions[_currentMenuOption].font = selected ? Selected : Unselected;
-        MenuOptions[_currentMenuOption].GetComponent<Renderer>().sharedMaterial = selected ? Selected.material : Unselected.material;
+        MenuOptions[option].font = selected ? Selected : Unselected;
+        MenuOptions[option].GetComponent<Renderer>().sharedMaterial = selected ? Selected.material : Unselected.material;
     }
 
     private void SetPauseState(bool b) {
         _paused = b;
-        Time.timeScale = b ? 0.01f : 1f;
+        Time.timeScale = b ? 0.1f : 1f;
         Background.SetActive(b);
+        for (int i = 0; i < MenuOptions.Length; i++) {
+            MenuOptions[i].gameObject.SetActive(b);
+        }
+        SetFont(_currentMenuOption, true);
     }
 }
