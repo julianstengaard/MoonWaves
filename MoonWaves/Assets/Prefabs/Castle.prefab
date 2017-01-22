@@ -1424,6 +1424,9 @@ MonoBehaviour:
     - {fileID: 21300016, guid: 6ef87e0eca63cda43a762a1b348071cb, type: 3}
     - {fileID: 21300022, guid: 6ef87e0eca63cda43a762a1b348071cb, type: 3}
     - {fileID: 21300012, guid: 6ef87e0eca63cda43a762a1b348071cb, type: 3}
+    - {fileID: 21300020, guid: 6ef87e0eca63cda43a762a1b348071cb, type: 3}
+    - {fileID: 21300018, guid: 6ef87e0eca63cda43a762a1b348071cb, type: 3}
+    - {fileID: 21300014, guid: 6ef87e0eca63cda43a762a1b348071cb, type: 3}
     ouchFaces:
     - {fileID: 21300010, guid: 6ef87e0eca63cda43a762a1b348071cb, type: 3}
 --- !u!114 &114344000756244738

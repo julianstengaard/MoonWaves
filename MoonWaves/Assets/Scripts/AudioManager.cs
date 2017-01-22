@@ -6,14 +6,6 @@ public class AudioManager : MonoBehaviour {
 
 	private static AudioManager _instance;
 
-	[Header("Moon Collision")]
-	public AudioSource moonCollision;
-
-	[Header("Castle References")]
-	public AudioSource minorDmg;
-	public AudioSource destroyTower;
-	public AudioSource destroyCastle;
-
 	[Header("Ambience Settings")]
 	public float fadeTime;
 	public float wavesVolume;
@@ -26,18 +18,29 @@ public class AudioManager : MonoBehaviour {
 	public AudioSource wavesThree;
 
 	[Header("Events Settings")]
+	public AudioClip[] waveCrashes;
 	public float waveCrashVolume;
 	public float waveCrashCooldown;
+	public AudioClip[] castleScreams;
+	public float castleScreamVolume;
+	public float castleScreamCooldown;
 
+	private Dictionary<Moon.Players, float> castleScreamPlayerDelay;
 	private Dictionary<Moon.Players, float> waveCrashPlayerDelay;
+	private int previousCastleScreamIndex;
 
 	[Header("Events References")]
 	public AudioSource waveCrash;
-	public AudioClip[] waveCrashes;
+	public AudioSource moonCollision;
+	public AudioSource minorDmg;
+	public AudioSource destroyTower;
+	public AudioSource destroyCastle;
+	public AudioSource castleScream;
 
 	void Awake()
 	{
 		_instance = this;
+		castleScreamPlayerDelay = new Dictionary<Moon.Players, float>();
 		waveCrashPlayerDelay = new Dictionary<Moon.Players, float>();
 	}
 
@@ -54,7 +57,7 @@ public class AudioManager : MonoBehaviour {
 	void Update()
 	{
 		//UpdateWaves(WaterParticle.waveCollisionCountAvg);
-		UpdateWaveCrashDelays();
+		UpdateDelays();
 
 	}
 
@@ -80,9 +83,17 @@ public class AudioManager : MonoBehaviour {
 		}
 	}
 
-	private void UpdateWaveCrashDelays()
+	private void UpdateDelays()
 	{
-		List<Moon.Players> players = new List<Moon.Players>(waveCrashPlayerDelay.Keys);
+		List<Moon.Players> players = new List<Moon.Players>(castleScreamPlayerDelay.Keys);
+		foreach (Moon.Players player in players)
+		{
+			if (castleScreamPlayerDelay[player] <= 0) continue;
+			castleScreamPlayerDelay[player] -= Time.deltaTime;
+		}
+
+		players.Clear();
+		players.AddRange(waveCrashPlayerDelay.Keys);
 		foreach (Moon.Players player in players)
 		{
 			if (waveCrashPlayerDelay[player] <= 0) continue;
@@ -116,5 +127,23 @@ public class AudioManager : MonoBehaviour {
 	public static void MoonCollision()
 	{
 		_instance.moonCollision.Play();
+	}
+
+	public static void PlayCastleScream(Moon.Players player)
+	{
+		if (_instance.castleScreams.Length == 0) return;
+		if (!_instance.castleScreamPlayerDelay.ContainsKey(player)) _instance.castleScreamPlayerDelay.Add(player, 0);
+		else if (_instance.castleScreamPlayerDelay[player] > 0) return;
+
+		int newClipIndex = Random.Range(0, _instance.castleScreams.Length);
+		while (newClipIndex == _instance.previousCastleScreamIndex)
+		{
+			newClipIndex = Random.Range(0, _instance.castleScreams.Length);
+		}
+		_instance.previousCastleScreamIndex = newClipIndex;
+
+		AudioClip clip = _instance.castleScreams[newClipIndex];
+		_instance.castleScream.PlayOneShot(clip, _instance.castleScreamVolume);
+		_instance.castleScreamPlayerDelay[player] = _instance.castleScreamCooldown;
 	}
 }

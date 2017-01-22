@@ -85,5 +85,6 @@ public class Castle : MonoBehaviour {
 
 		Sprite[] options = faces[currentFaceIndex].ouchFaces;
 		face.sprite = options[Random.Range(0, options.Length)];
+		AudioManager.PlayCastleScream(health.player);
 	}
 }
