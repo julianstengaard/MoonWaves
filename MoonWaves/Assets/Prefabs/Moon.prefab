@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 212414009390025160}
   - component: {fileID: 95994813085007588}
   - component: {fileID: 114875431372490990}
+  - component: {fileID: 82832075406954634}
   m_Layer: 0
   m_Name: moonFace
   m_TagString: Untagged
@@ -172,6 +173,86 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.62
+--- !u!82 &82832075406954634
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1676448319101106}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95994813085007588
 Animator:
   serializedVersion: 3
@@ -207,8 +288,8 @@ MonoBehaviour:
   _OffsetY: 3
   _DistanceX: 0.01
   _DistanceY: 0.01
-  _WaveTimeX: 5.8480854
-  _WaveTimeY: 4.4283805
+  _WaveTimeX: 1.6482537
+  _WaveTimeY: 0.020414352
   AutoPlayWaveX: 1
   AutoPlaySpeedX: 5
   AutoPlayWaveY: 1
@@ -246,8 +327,8 @@ MonoBehaviour:
   _OffsetY: 3
   _DistanceX: 0.01
   _DistanceY: 0.01
-  _WaveTimeX: 4.853657
-  _WaveTimeY: 0.19600873
+  _WaveTimeX: 0.047736872
+  _WaveTimeY: 3.3492699
   AutoPlayWaveX: 1
   AutoPlaySpeedX: 5
   AutoPlayWaveY: 1
@@ -321,6 +402,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moonSucktionParticles: {fileID: 198067906537987542}
+  suckSounds:
+  - {fileID: 8300000, guid: f4ff70f303d760c40b8b26c917b9a30b, type: 3}
+  - {fileID: 8300000, guid: 788ee5278e827d949a83bc83a9154c8a, type: 3}
+  - {fileID: 8300000, guid: 01be4049c0bc8d34793210852751fa35, type: 3}
+  suckSource: {fileID: 82832075406954634}
 --- !u!198 &198067906537987542
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -376,7 +462,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -823443855
+  randomSeed: -1432290685
   InitialModule:
     serializedVersion: 3
     enabled: 1

@@ -6,6 +6,14 @@ public class AudioManager : MonoBehaviour {
 
 	private static AudioManager _instance;
 
+	[Header("Moon Collision")]
+	public AudioSource moonCollision;
+
+	[Header("Castle References")]
+	public AudioSource minorDmg;
+	public AudioSource destroyTower;
+	public AudioSource destroyCastle;
+
 	[Header("Ambience Settings")]
 	public float fadeTime;
 	public float wavesTwoSwitchCount;
@@ -46,6 +54,7 @@ public class AudioManager : MonoBehaviour {
 	{
 		UpdateWaves(WaterParticle.waveCollisionCountAvg);
 		UpdateWaveCrashDelays();
+
 	}
 
 	private void UpdateWaves(int count)
@@ -90,4 +99,9 @@ public class AudioManager : MonoBehaviour {
 		_instance.waveCrash.PlayOneShot(clip, _instance.waveCrashVolume);
 		_instance.waveCrashPlayerDelay[player] = _instance.waveCrashCooldown;
     }
+
+	public static void StateChange(int index)
+	{
+		
+	}
 }
