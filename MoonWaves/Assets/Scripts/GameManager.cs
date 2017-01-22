@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour {
 
 			case LevelStates.Menu:
 				{
-					Time.timeScale = 0;
+
 				}
 				break;
 		}
@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour {
 
 			case LevelStates.Menu:
 				{
-					Time.timeScale = 1;
+
 				}
 				break;
 		}
