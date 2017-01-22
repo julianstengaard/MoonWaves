@@ -15,6 +15,8 @@ public class Moon : MonoBehaviour {
     public GameObject Anchor;
     public float Distance;
 
+	public float speed;
+	public float suckSpeed;
     public AnimationCurve SpeedCurve;
     public float BrakeFactor;
     public AnimationCurve BounceCurve;
@@ -94,7 +96,7 @@ public class Moon : MonoBehaviour {
     }
 
     private void UpdateAngle() {
-        _currentAngle += Mathf.Sign(_currentInertia) * SpeedCurve.Evaluate(_currentInertia) * Time.deltaTime;
+        _currentAngle += Mathf.Sign(_currentInertia) * SpeedCurve.Evaluate(_currentInertia) * (_sucking ? suckSpeed : speed) * Time.deltaTime;
         if (_currentAngle >= Mathf.PI * 2f) {
             _currentAngle -= Mathf.PI * 2f;
         } else if (_currentAngle <= 0f) {

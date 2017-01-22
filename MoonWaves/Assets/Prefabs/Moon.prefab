@@ -299,8 +299,8 @@ MonoBehaviour:
   _OffsetY: 3
   _DistanceX: 0.01
   _DistanceY: 0.01
-  _WaveTimeX: 3.7132401
-  _WaveTimeY: 2.2279441
+  _WaveTimeX: 4.2470303
+  _WaveTimeY: 0.63254035
   AutoPlayWaveX: 1
   AutoPlaySpeedX: 5
   AutoPlayWaveY: 1
@@ -325,25 +325,27 @@ MonoBehaviour:
   InitialPIAngle: 0
   Anchor: {fileID: 0}
   Distance: 5
+  speed: 2
+  suckSpeed: 0.75
   SpeedCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
       time: 0
       value: 0
-      inSlope: 6.9011703
-      outSlope: 6.9011703
+      inSlope: 2.8123302
+      outSlope: 2.8123302
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.24047375
-      value: 0.85331064
-      inSlope: 0
-      outSlope: 0
+      time: 1
+      value: 1
+      inSlope: 2.1016085
+      outSlope: 2.1016085
       tangentMode: 0
     m_PreInfinity: 0
     m_PostInfinity: 0
     m_RotationOrder: 0
-  BrakeFactor: 4
+  BrakeFactor: 3
   BounceCurve:
     serializedVersion: 2
     m_Curve:
