@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -22,6 +23,14 @@ public class GameManager : MonoBehaviour {
 	private LevelStates _currentState = LevelStates.None;
 	public static LevelStates currentState { get { return _instance._currentState; } }
 
+	public List<SceneAssociation> stateSceneAssociations;
+	[System.Serializable]
+	public class SceneAssociation
+	{
+		public string sceneName;
+		public LevelStates associatedState;
+	}
+
 	void Awake()
 	{
 		if (_instance != null)
@@ -33,24 +42,32 @@ public class GameManager : MonoBehaviour {
 		_instance = this;
 		DontDestroyOnLoad(this);
 
-		ChangeState(startState);
+		SetState(startState);
 	}
 	
-	public static void SetState(LevelStates newState) { _instance._currentState = newState; }
-	public void ChangeState(LevelStates newState)
+	public static void SetState(LevelStates newState) { _instance.StartCoroutine(_instance.ChangeState(newState)); }
+	private IEnumerator ChangeState(LevelStates newState)
 	{
+		Debug.Log("Leaving state - " + _currentState);
 		OnLeaveState(_currentState);
+
+		SceneAssociation newScene = stateSceneAssociations.Find(x => x.associatedState == newState);
+		if (newScene != null && SceneManager.GetActiveScene().name != newScene.sceneName)
+		{
+			SceneManager.LoadScene(newScene.sceneName);
+		}
+		
+		yield return null;
 
 		if (OnStateChange != null) OnStateChange(_currentState, newState);
 		_currentState = newState;
 
+		Debug.Log("Enter state - " + newState);
 		OnEnterState(newState);
 	}
 
 	public void OnEnterState(LevelStates state)
 	{
-		Debug.Log("Enter state - " + state);
-
 		switch (state)
 		{
 			case LevelStates.MainMenu:
@@ -81,8 +98,6 @@ public class GameManager : MonoBehaviour {
 
 	public void OnLeaveState(LevelStates state)
 	{
-		Debug.Log("Leaving state - " + state);
-
 		switch (state)
 		{
 			case LevelStates.MainMenu:

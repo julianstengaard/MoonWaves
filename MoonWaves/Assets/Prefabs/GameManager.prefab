@@ -52,3 +52,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startState: 4
+  stateSceneAssociations:
+  - sceneName: MainMenu
+    associatedState: 1
+  - sceneName: IntroMovie
+    associatedState: 2
+  - sceneName: _MainScene
+    associatedState: 3
+  - sceneName: _MainScene
+    associatedState: 4
+  - sceneName: _MainScene
+    associatedState: 5
