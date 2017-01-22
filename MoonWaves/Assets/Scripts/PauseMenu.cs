@@ -45,7 +45,7 @@ public class PauseMenu : MonoBehaviour {
             if (_currentMenuOption == 1) {
                 //Restart
                 print("Restart");
-                GameManager.SetState(GameManager.LevelStates.MainMenu);
+                GameManager.SetState(GameManager.LevelStates.Countdown, true);
             }
             if (_currentMenuOption == 2) {
                 //Main menu
@@ -99,13 +99,16 @@ public class PauseMenu : MonoBehaviour {
     }
 
     private void SetPauseState(bool b) {
+        if (GameManager.currentState == GameManager.LevelStates.Countdown) {
+            return;
+        }
+
         if (b) {
             GameManager.SetState(GameManager.LevelStates.Menu);
         } else {
             GameManager.SetState(GameManager.LevelStates.Battle);
         }
         _paused = b;
-        Time.timeScale = b ? 0.1f : 1f;
         Background.SetActive(b);
         for (int i = 0; i < MenuOptions.Length; i++) {
             MenuOptions[i].gameObject.SetActive(b);
