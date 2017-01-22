@@ -35,6 +35,8 @@ public class Castle : MonoBehaviour {
 
 	void Update()
 	{
+		if (health.currentHealth <= 0) face.gameObject.SetActive(false);
+
 		UpdateFace();
 		UpdateFacePosition();
 	}

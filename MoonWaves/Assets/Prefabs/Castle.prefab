@@ -1226,7 +1226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 0
-  maxHealth: 200
+  maxHealth: 100
   states:
   - {fileID: 212436134477957658}
   - {fileID: 212947455682866730}
@@ -1312,7 +1312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 0
-  maxHealth: 100
+  maxHealth: 50
   states:
   - {fileID: 212768717285295498}
   - {fileID: 212472372071545094}
@@ -1320,10 +1320,22 @@ MonoBehaviour:
   destroyed: {fileID: 212003014670635950}
   collapseCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   HitThreshold1: 1
   HitThreshold2: 2
   HitThreshold3: 3
@@ -1357,7 +1369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 0
-  maxHealth: 100
+  maxHealth: 50
   states:
   - {fileID: 212214406239112180}
   - {fileID: 212712336945020490}
@@ -1365,10 +1377,22 @@ MonoBehaviour:
   destroyed: {fileID: 212321001731460480}
   collapseCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   HitThreshold1: 1
   HitThreshold2: 2
   HitThreshold3: 3

@@ -19,6 +19,8 @@ public class BuildingHealth : MonoBehaviour {
 	public int HitThreshold2;
 	public int HitThreshold3;
 	public StuckBallMover stuckBallMover;
+	public ParticleSystem collapseParticles;
+	public ParticleSystem destroyParticles;
 
 	private bool isDead;
 	private int spriteIndex;
@@ -57,7 +59,6 @@ public class BuildingHealth : MonoBehaviour {
 		//	HitCountOverThreshold3 = 0;
 		//	currentHealth = maxHealth;
 		//}
-		UpdateSprite();
 	}
 
 	private void UpdateSprite()
@@ -69,6 +70,8 @@ public class BuildingHealth : MonoBehaviour {
 			states[spriteIndex].gameObject.SetActive(false);
 			spriteIndex++;
 
+			AudioManager.StateChangeAudio(AudioManager.CrashSounds.Minor);
+
 			if (spriteIndex < states.Length)
 			{
 				states[spriteIndex].gameObject.SetActive(true);
@@ -76,6 +79,8 @@ public class BuildingHealth : MonoBehaviour {
 			else if (!isDead)
 			{
 				isDead = true;
+				if (GetComponent<Castle>() != null) AudioManager.StateChangeAudio(AudioManager.CrashSounds.CastleCollapse);
+				else AudioManager.StateChangeAudio(AudioManager.CrashSounds.TowerCollapse);
 				StartCoroutine(DestroyRoutine());
 			}
 		}
@@ -86,7 +91,7 @@ public class BuildingHealth : MonoBehaviour {
 		destroyed.gameObject.SetActive(true);
 
 		float startTimer = Time.time;
-		float endTimer = startTimer + 2;
+		float endTimer = startTimer + 3.5f;
 		float progress = 0;
 		while (progress < 1)
 		{
@@ -103,12 +108,13 @@ public class BuildingHealth : MonoBehaviour {
 		{
 			HitCountOverThreshold1++;
 			currentHealth -= 0.05f;
-			AudioManager.PlayWaveCrash(player);
 		}
 		if (collider.attachedRigidbody.velocity.sqrMagnitude > _hitThreshold2Sqr)
 		{
 			HitCountOverThreshold2++;
 			currentHealth -= 0.2f;
+
+			AudioManager.PlayWaveCrash(player);
 		}
 		if (collider.attachedRigidbody.velocity.sqrMagnitude > _hitThreshold3Sqr)
 		{
@@ -116,6 +122,7 @@ public class BuildingHealth : MonoBehaviour {
 			currentHealth -= 1f;
 		}
 
+		UpdateSprite();
 		if (OnDamage != null) OnDamage(collider.gameObject, spriteIndex);
 		stuckBallMover.RemoveBall(collider.gameObject);
 	}

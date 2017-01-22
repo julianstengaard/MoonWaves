@@ -129,6 +129,7 @@ public class Moon : MonoBehaviour {
 			Moon moon = collision.gameObject.GetComponent<Moon>();
 			if (moon == null) return;
 
+			AudioManager.MoonCollision();
             StartBounce(collision.gameObject.GetComponent<Moon>());
         }
     }
