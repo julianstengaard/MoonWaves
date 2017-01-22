@@ -299,8 +299,8 @@ MonoBehaviour:
   _OffsetY: 3
   _DistanceX: 0.01
   _DistanceY: 0.01
-  _WaveTimeX: 4.2470303
-  _WaveTimeY: 0.63254035
+  _WaveTimeX: 2.5615442
+  _WaveTimeY: 0
   AutoPlayWaveX: 1
   AutoPlaySpeedX: 5
   AutoPlayWaveY: 1
@@ -380,8 +380,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f4ff70f303d760c40b8b26c917b9a30b, type: 3}
   - {fileID: 8300000, guid: 788ee5278e827d949a83bc83a9154c8a, type: 3}
   - {fileID: 8300000, guid: 01be4049c0bc8d34793210852751fa35, type: 3}
+  - {fileID: 8300000, guid: 256fed62c3cdf6549a2d0512fb75f35b, type: 3}
   volumes:
   - 0.5
+  - 0
   - 0
   - 1
   suckSource: {fileID: 82832075406954634}
