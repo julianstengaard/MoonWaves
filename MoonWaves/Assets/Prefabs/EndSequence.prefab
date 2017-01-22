@@ -75,7 +75,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4059969481107490
 Transform:
   m_ObjectHideFlags: 1
@@ -251,3 +251,5 @@ MonoBehaviour:
   victoryText: {fileID: 4430386643278392}
   p1Fireworks: {fileID: 0}
   p2Fireworks: {fileID: 0}
+  playerText: {fileID: 102595837829938588}
+  menu: {fileID: 0}

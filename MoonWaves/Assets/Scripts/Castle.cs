@@ -12,6 +12,7 @@ public class Castle : MonoBehaviour {
 	[Header("References")]
 	public BuildingHealth health;
 	public SpriteRenderer face;
+	public EndSequence end;
 	
 	public List<FaceState> faces;
 	private int currentFaceIndex;
@@ -56,6 +57,8 @@ public class Castle : MonoBehaviour {
 	private void UpdateFacePosition()
 	{
 		if (Time.time < facePositionTimer) return;
+		if (currentFaceIndex >= faces.Count) return;
+
 		facePositionTimer = Time.time + facePositionDuration;
 
 		Vector3 newRot = new Vector3(0, 0, Random.Range(-6f, 6f));
@@ -70,6 +73,11 @@ public class Castle : MonoBehaviour {
 
 	private void OnDamage(GameObject collider, int stateIndex)
 	{
+		if (GameManager.currentState == GameManager.LevelStates.Battle && health.currentHealth <= 0)
+		{
+			end.RunEndSequence(health.player);
+		}
+
 		if (Time.time < faceOuchTimer) return;
 		faceOuchTimer = Time.time + ouchDuration;
 

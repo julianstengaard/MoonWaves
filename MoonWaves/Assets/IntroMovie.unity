@@ -338,7 +338,7 @@ MonoBehaviour:
   holdToSkipTime: 1
   textRemainTime: 1
   skipText: {fileID: 1604911645}
-  movie: {fileID: 15200000, guid: e631bc82ad9f72449801da4620de7c15, type: 3}
+  movie: {fileID: 15200000, guid: 185b93d912e47864980335ebf03be7f1, type: 3}
 --- !u!4 &1412231241
 Transform:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class EndSequence : MonoBehaviour {
 	public ParticleSystem p1Fireworks;
 	public ParticleSystem p2Fireworks;
 	public TextMesh playerText;
+	public PauseMenu menu;
 
 	void Awake()
 	{
@@ -26,41 +27,48 @@ public class EndSequence : MonoBehaviour {
 				GameManager.SetState(GameManager.LevelStates.End);
 				RunEndSequence(Moon.Players.PlayerOne);
 			}
+
+			if (Input.GetKeyDown(KeyCode.B))
+			{
+				GameManager.SetState(GameManager.LevelStates.End);
+				RunEndSequence(Moon.Players.PlayerTwo);
+			}
 			return;
 		}
 
 		float angle = Mathf.Sin(Time.time * rotateSpeed) * angleDelta;
-		Debug.Log(angle);
 		victoryText.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, angle));
 	}
 
-	public void RunEndSequence(Moon.Players victor)
+	public void RunEndSequence(Moon.Players loser)
 	{
 		victoryText.gameObject.SetActive(true);
-		StartCoroutine(EndRoutine(victor));
+		StartCoroutine(EndRoutine(loser));
 	}
 
-	private IEnumerator EndRoutine(Moon.Players victor)
+	private IEnumerator EndRoutine(Moon.Players loser)
 	{
-		switch (victor)
+		switch (loser)
 		{
 			case Moon.Players.PlayerOne:
 				{
-					if (p1Fireworks != null)
+					playerText.text = "Red";
+					playerText.color = Color.red;
+					
+					if (p2Fireworks != null)
 					{
-						p1Fireworks.Play();
-						playerText.text = "Blue";
-						playerText.color = Color.blue;
+						p2Fireworks.Play();
 					}
 				}
 				break;
 			case Moon.Players.PlayerTwo:
 				{
-					if (p2Fireworks != null)
+					playerText.text = "Blue";
+					playerText.color = Color.blue;
+
+					if (p1Fireworks != null)
 					{
-						p2Fireworks.Play();
-						playerText.text = "Red";
-						playerText.color = Color.red;
+						p1Fireworks.Play();
 					}
 				}
 				break;
@@ -72,6 +80,6 @@ public class EndSequence : MonoBehaviour {
 
 		yield return new WaitForSeconds(5);
 
-		GameManager.SetState(GameManager.LevelStates.Menu);
+		menu.SetPauseState(true);
 	}
 }

@@ -51,22 +51,22 @@ public class GameManager : MonoBehaviour {
 		SetState(startState);
 	}
 	
-	public static void SetState(LevelStates newState)
+	public static void SetState(LevelStates newState, bool reload = false)
 	{
 		if (_instance.changingState) return;
 		_instance.changingState = true;
-		_instance.StartCoroutine(_instance.ChangeState(newState));
+		_instance.StartCoroutine(_instance.ChangeState(newState, reload));
 	}
-	private IEnumerator ChangeState(LevelStates newState)
+	private IEnumerator ChangeState(LevelStates newState, bool reload)
 	{
 		Debug.Log("Leaving state - " + _currentState);
 		yield return OnLeaveState(_currentState);
 
 		SceneAssociation newScene = stateSceneAssociations.Find(x => x.associatedState == newState);
-		if (newScene != null && SceneManager.GetActiveScene().name != newScene.sceneName)
+		if (newScene != null && (reload || SceneManager.GetActiveScene().name != newScene.sceneName))
 		{
-			SceneManager.LoadScene(newScene.sceneName);
-		}
+			yield return SceneManager.LoadSceneAsync(newScene.sceneName);
+        }
 
 		if (OnStateChange != null) OnStateChange(_currentState, newState);
 		_currentState = newState;
@@ -112,10 +112,9 @@ public class GameManager : MonoBehaviour {
 				break;
 
 
-			case LevelStates.Menu:
-				{
-
-				}
+			case LevelStates.Menu: {
+			    Time.timeScale = 0f;
+			}
 				break;
 		}
 	}
@@ -154,10 +153,9 @@ public class GameManager : MonoBehaviour {
 				break;
 
 
-			case LevelStates.Menu:
-				{
-
-				}
+			case LevelStates.Menu: {
+			    Time.timeScale = 1f;
+			}
 				break;
 		}
 	}
