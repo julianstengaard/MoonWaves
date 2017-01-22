@@ -6,15 +6,20 @@ using UnityStandardAssets.ImageEffects;
 
 public class FadeInCamera : MonoBehaviour {
 
+	private VignetteAndChromaticAberration script;
+
 	// Use this for initialization
-	void Start () {
-	    VignetteAndChromaticAberration script = GetComponent<VignetteAndChromaticAberration>();
-	    HOTween.To(script, 1.5f, "intensity", 0f, false, EaseType.EaseInCubic, 0f);
-        HOTween.To(script, 1.5f, "blur", 0f, false, EaseType.EaseInCubic, 0f);
+	void Awake() {
+	    script = GetComponent<VignetteAndChromaticAberration>();
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
+	public void Fade(bool fadeIn, float duration)
+	{
+		script.intensity = fadeIn ? 1 : 0;
+		script.blur = fadeIn ? 1 : 0;
+
+		//Fade in/out
+		HOTween.To(script, duration, "intensity", fadeIn ? 0 : 1, false, EaseType.EaseInCubic, 0f);
+		HOTween.To(script, duration, "blur", fadeIn ? 0 : 1, false, EaseType.EaseInCubic, 0f);
 	}
 }

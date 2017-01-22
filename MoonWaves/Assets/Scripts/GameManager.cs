@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour {
 		public LevelStates associatedState;
 	}
 
+	private bool changingState;
+
 	void Awake()
 	{
 		if (_instance != null)
@@ -41,87 +43,118 @@ public class GameManager : MonoBehaviour {
 
 		_instance = this;
 		DontDestroyOnLoad(this);
+	}
 
+	void Start()
+	{
 		SetState(startState);
 	}
 	
-	public static void SetState(LevelStates newState) { _instance.StartCoroutine(_instance.ChangeState(newState)); }
-	private IEnumerator ChangeState(LevelStates newState)
+	public static void SetState(LevelStates newState, bool reload = false)
+	{
+		if (_instance.changingState) return;
+		_instance.changingState = true;
+		_instance.StartCoroutine(_instance.ChangeState(newState, reload));
+	}
+	private IEnumerator ChangeState(LevelStates newState, bool reload)
 	{
 		Debug.Log("Leaving state - " + _currentState);
-		OnLeaveState(_currentState);
+		yield return OnLeaveState(_currentState);
 
 		SceneAssociation newScene = stateSceneAssociations.Find(x => x.associatedState == newState);
-		if (newScene != null && SceneManager.GetActiveScene().name != newScene.sceneName)
+		if (newScene != null && (reload || SceneManager.GetActiveScene().name != newScene.sceneName))
 		{
-			SceneManager.LoadScene(newScene.sceneName);
-		}
-		
-		yield return null;
+			yield return SceneManager.LoadSceneAsync(newScene.sceneName);
+        }
 
 		if (OnStateChange != null) OnStateChange(_currentState, newState);
 		_currentState = newState;
 
 		Debug.Log("Enter state - " + newState);
-		OnEnterState(newState);
+		yield return OnEnterState(newState);
+		changingState = false;
 	}
 
-	public void OnEnterState(LevelStates state)
+	public IEnumerator OnEnterState(LevelStates state)
 	{
 		switch (state)
 		{
 			case LevelStates.MainMenu:
-
+				{
+					FadeInCamera fadeIn = GameObject.FindObjectOfType<FadeInCamera>();
+					if (fadeIn != null) fadeIn.Fade(true, 1.5f);
+					yield return new WaitForSeconds(1.5f);
+				}
 				break;
 
 
 			case LevelStates.IntroMovie:
+				{
 
+				}
 				break;
 
 
 			case LevelStates.Countdown:
-
+				{
+					FadeInCamera fadeIn = GameObject.FindObjectOfType<FadeInCamera>();
+					if (fadeIn != null) fadeIn.Fade(true, 1.5f);
+					yield return new WaitForSeconds(1.5f);
+				}
 				break;
 
 
 			case LevelStates.Battle:
+				{
 
+				}
 				break;
 
 
-			case LevelStates.Menu:
-				Time.timeScale = 0;
+			case LevelStates.Menu: {
+			    Time.timeScale = 0f;
+			}
 				break;
 		}
 	}
 
-	public void OnLeaveState(LevelStates state)
+	public IEnumerator OnLeaveState(LevelStates state)
 	{
 		switch (state)
 		{
 			case LevelStates.MainMenu:
-
+				{
+					FadeInCamera fadeIn = GameObject.FindObjectOfType<FadeInCamera>();
+					if (fadeIn != null) fadeIn.Fade(false, 1.5f);
+					yield return new WaitForSeconds(1.5f);
+				}
 				break;
 
 
 			case LevelStates.IntroMovie:
+				{
 
+				}
 				break;
 
 
 			case LevelStates.Countdown:
-				
+				{
+
+				}
 				break;
 
 
 			case LevelStates.Battle:
-				
+				{
+
+				}
 				break;
 
 
-			case LevelStates.Menu:
-				Time.timeScale = 1;
+			case LevelStates.Menu: {
+			    Time.timeScale = 1f;
+			}
 				break;
 		}
 	}

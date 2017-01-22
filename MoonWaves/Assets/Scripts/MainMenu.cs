@@ -8,7 +8,6 @@ public class MainMenu : MonoBehaviour {
 	public TextMesh p2ReadyText;
 	public SpriteRenderer p1AButton;
 	public SpriteRenderer p2AButton;
-	public int nextSceneIndex;
 
 	private bool p1Ready;
 	private bool p2Ready;
@@ -39,6 +38,6 @@ public class MainMenu : MonoBehaviour {
 			p2AButton.enabled = false;
 		}
 
-		if (p1Ready && p2Ready) UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneIndex);
+		if (p1Ready && p2Ready) GameManager.SetState(GameManager.LevelStates.IntroMovie);
 	}
 }
