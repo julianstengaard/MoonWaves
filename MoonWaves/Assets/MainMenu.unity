@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 0
-  intensity: 0
+  intensity: 1
   chromaticAberration: 0
   axialAberration: 0.5
   blur: 0
