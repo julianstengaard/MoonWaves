@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour {
 		IntroMovie,
 		Countdown,
 		Battle,
-		Menu
+		End,
+		Menu,
 	}
 	private LevelStates _currentState = LevelStates.None;
 	public static LevelStates currentState { get { return _instance._currentState; } }

@@ -21,6 +21,7 @@ public class Moon : MonoBehaviour {
     public float BrakeFactor;
     
     public AnimationCurve BounceCurve;
+	public ParticleSystem bounceParticles;
 
     private float _curveDuration;
 
@@ -141,8 +142,18 @@ public class Moon : MonoBehaviour {
             dir = 1f;
         }
 
-		if (_sucking) anim.SetTrigger("crashTrigger");
-		if (otherMoon._sucking) otherMoon.anim.SetTrigger("crashTrigger");
+		if (_sucking)
+		{
+			bounceParticles.transform.parent.localRotation = Quaternion.Euler(new Vector3(0, 0, dir > 0 ? 45 : -45));
+			bounceParticles.Play();
+			anim.SetTrigger("crashTrigger");
+		}
+		if (otherMoon._sucking)
+		{
+			otherMoon.bounceParticles.transform.parent.localRotation = Quaternion.Euler(new Vector3(0, 0, dir > 0 ? -45 : 45));
+			otherMoon.bounceParticles.Play();
+			otherMoon.anim.SetTrigger("crashTrigger");
+		}
 
         float otherInertia = otherMoon._currentInertia * otherMoon.GetCurrentUsedSpeed();
         float myInertia = _currentInertia * GetCurrentUsedSpeed();

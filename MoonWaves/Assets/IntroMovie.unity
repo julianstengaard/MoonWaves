@@ -335,7 +335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5976da6fdd46bd14c90be807cd6a1f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneIndex: 2
   holdToSkipTime: 1
   textRemainTime: 1
   skipText: {fileID: 1604911645}
@@ -364,7 +363,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e631bc82ad9f72449801da4620de7c15, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 185b93d912e47864980335ebf03be7f1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
