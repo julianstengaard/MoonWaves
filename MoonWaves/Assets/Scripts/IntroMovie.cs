@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class IntroMovie : MonoBehaviour {
-
-	public int nextSceneIndex;
+	
 	public float holdToSkipTime;
 	public float textRemainTime;
 	public GameObject skipText;
@@ -49,6 +48,6 @@ public class IntroMovie : MonoBehaviour {
 
 	private void Continue()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneIndex);
+		GameManager.SetState(GameManager.LevelStates.Countdown);
 	}
 }
