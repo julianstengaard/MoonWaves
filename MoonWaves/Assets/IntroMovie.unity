@@ -130,15 +130,15 @@ TextMesh:
   m_GameObject: {fileID: 203861123}
   m_Text: Hold       to skip
   m_OffsetZ: 0
-  m_CharacterSize: 0.38
+  m_CharacterSize: 0.05
   m_LineSpacing: 1
   m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 0
+  m_FontSize: 64
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 0}
+  m_Font: {fileID: 12800000, guid: 58824feaaae36cd4fb0804aa85020985, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -155,7 +155,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58824feaaae36cd4fb0804aa85020985, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextSceneIndex: 2
-  holdToSkipTime: 2
+  holdToSkipTime: 1
   textRemainTime: 1
   skipText: {fileID: 1604911645}
   movie: {fileID: 15200000, guid: e631bc82ad9f72449801da4620de7c15, type: 3}
@@ -411,7 +411,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1462808354}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5499997, y: 0, z: 0}
+  m_LocalPosition: {x: 1.61, y: 0, z: 0}
   m_LocalScale: {x: 0.3396334, y: 0.33963332, z: 0.33963332}
   m_Children: []
   m_Father: {fileID: 1604911646}
