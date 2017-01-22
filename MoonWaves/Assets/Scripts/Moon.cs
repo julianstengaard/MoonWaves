@@ -140,6 +140,10 @@ public class Moon : MonoBehaviour {
         } else {
             dir = 1f;
         }
+
+		if (_sucking) anim.SetTrigger("crashTrigger");
+		if (otherMoon._sucking) otherMoon.anim.SetTrigger("crashTrigger");
+
         float otherInertia = otherMoon._currentInertia * otherMoon.GetCurrentUsedSpeed();
         float myInertia = _currentInertia * GetCurrentUsedSpeed();
         SetBounceDirectionAndStart(dir, otherInertia);
