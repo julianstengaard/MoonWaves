@@ -25,25 +25,32 @@ public class PauseMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		HandlePause();
+        HandlePause();
+
+	    if (!_paused) {
+	        return;
+	    }
         HandleSelect();
 	    HandlePress();
 	}
 
     private void HandlePress() {
-        if (_clickButtonReady && Input.GetAxis("Fire1") > 0.5f) {
+        if (_clickButtonReady && (Input.GetAxisRaw("Fire1") > 0.7f || Input.GetAxisRaw("Fire2") > 0.7f)) {
             _clickButtonReady = false;
             if (_currentMenuOption == 0) {
                 SetPauseState(false);
                 print("Resume");
+                GameManager.SetState(GameManager.LevelStates.Battle);
             }
             if (_currentMenuOption == 1) {
                 //Restart
                 print("Restart");
+                GameManager.SetState(GameManager.LevelStates.MainMenu);
             }
             if (_currentMenuOption == 2) {
                 //Main menu
                 print("Main");
+                GameManager.SetState(GameManager.LevelStates.MainMenu);
             }
             if (_currentMenuOption == 3) {
                 //Exit
@@ -51,18 +58,18 @@ public class PauseMenu : MonoBehaviour {
                 Application.Quit();
             }
         }
-        if (!_clickButtonReady && Input.GetAxis("Fire1") <= 0.01f) {
+        if (!_clickButtonReady && Input.GetAxisRaw("Fire1") <= 0.2f && Input.GetAxisRaw("Fire2") <= 0.2f) {
             _clickButtonReady = true;
         }
     }
 
     private void HandleSelect() {
-        if (_selectButtonReady && Input.GetAxis("Horizontal") < -0.5f) {
+        if (_selectButtonReady && Input.GetAxisRaw("MenuVertical") < -0.999999f) {
             _selectButtonReady = false;
             SetFont(_currentMenuOption, false);
             _currentMenuOption = (_currentMenuOption + 1) % 4;
             SetFont(_currentMenuOption, true);
-        } else if (_selectButtonReady && Input.GetAxis("Horizontal") > 0.5f) {
+        } else if (_selectButtonReady && Input.GetAxisRaw("MenuVertical") > 0.999999f) {
             _selectButtonReady = false;
             SetFont(_currentMenuOption, false);
             _currentMenuOption = (_currentMenuOption == 0) ? 4 : _currentMenuOption;
@@ -70,18 +77,18 @@ public class PauseMenu : MonoBehaviour {
             SetFont(_currentMenuOption, true);
         }
 
-        if (!_selectButtonReady && Mathf.Abs(Input.GetAxis("Horizontal")) < 0.05f) {
+        if (!_selectButtonReady && Mathf.Abs(Input.GetAxisRaw("MenuVertical")) < 1f) {
             _selectButtonReady = true;
         }
     }
 
     private void HandlePause() {
-        if (_pauseButtonReady && Input.GetAxis("Pause") > 0.5f) {
+        if (_pauseButtonReady && Input.GetAxisRaw("Pause") > 0.7f) {
             _pauseButtonReady = false;
             SetPauseState(!_paused);
         }
 
-        if (!_pauseButtonReady && Input.GetAxis("Pause") <= 0.01f) {
+        if (!_pauseButtonReady && Input.GetAxisRaw("Pause") <= 0.2f) {
             _pauseButtonReady = true;
         }
     } 
@@ -92,6 +99,11 @@ public class PauseMenu : MonoBehaviour {
     }
 
     private void SetPauseState(bool b) {
+        if (b) {
+            GameManager.SetState(GameManager.LevelStates.Menu);
+        } else {
+            GameManager.SetState(GameManager.LevelStates.Battle);
+        }
         _paused = b;
         Time.timeScale = b ? 0.1f : 1f;
         Background.SetActive(b);
