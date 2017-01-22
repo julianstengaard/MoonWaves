@@ -6,38 +6,6 @@ public class StuckBallMover : MonoBehaviour {
     private Dictionary<GameObject, float> _ballsFadeTime = new Dictionary<GameObject, float>();
 	public float fizzleTime;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-//private void OnTriggerEnter2D(Collider2D collision) {
-//    if (!_ballsFadeTime.ContainsKey(collision.gameObject)) {
-//        _ballsFadeTime.Add(collision.gameObject, Time.realtimeSinceStartup + fizzleTime);
-//    }
-//}
-//
-//private void OnTriggerStay2D(Collider2D collision) {
-//    if (!_ballsFadeTime.ContainsKey(collision.gameObject)) {
-//        return;
-//    }
-//    if (Time.realtimeSinceStartup > _ballsFadeTime[collision.gameObject]) {
-//        StartCoroutine(BallFader(collision.gameObject));
-//    }
-//}
-//
-//private void OnTriggerExit2D(Collider2D collision) {
-//    if (!_ballsFadeTime.ContainsKey(collision.gameObject)) {
-//        return;
-//    }
-//    _ballsFadeTime.Remove(collision.gameObject);
-//}
-
 	public void RemoveBall(GameObject ball)
 	{
 		if (_ballsFadeTime.ContainsKey(ball)) return;

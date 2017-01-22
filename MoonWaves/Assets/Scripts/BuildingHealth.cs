@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class BuildingHealth : MonoBehaviour {
 
+	public delegate void DamageHandler(GameObject collider, int stateIndex);
+	public event DamageHandler OnDamage;
+
 	public Moon.Players player;
 	public float currentHealth { get; private set; }
 
 	[Header("Settings")]
-	[SerializeField]
-	private float health;
+	public float maxHealth;
 	public SpriteRenderer[] states;
 	public SpriteRenderer destroyed;
 	public AnimationCurve collapseCurve;
@@ -20,7 +22,7 @@ public class BuildingHealth : MonoBehaviour {
 
 	private bool isDead;
 	private int spriteIndex;
-	private float nextChange { get { return health - (health * (float)(spriteIndex + 1) / (float)(states.Length)); } }
+	private float nextChange { get { return maxHealth - (maxHealth * (float)(spriteIndex + 1) / (float)(states.Length)); } }
 
 	[Header("Debug")]
 	public float healthDebug;
@@ -38,7 +40,7 @@ public class BuildingHealth : MonoBehaviour {
 		_hitThreshold1Sqr = HitThreshold1 * HitThreshold1;
 		_hitThreshold2Sqr = HitThreshold2 * HitThreshold2;
 		_hitThreshold3Sqr = HitThreshold3 * HitThreshold3;
-		currentHealth = health;
+		currentHealth = maxHealth;
 		spriteIndex = 0;
 		isDead = false;
 	}
@@ -47,14 +49,14 @@ public class BuildingHealth : MonoBehaviour {
 	{
 		healthDebug = currentHealth;
 
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			HitCount = 0;
-			HitCountOverThreshold1 = 0;
-			HitCountOverThreshold2 = 0;
-			HitCountOverThreshold3 = 0;
-			currentHealth = health;
-		}
+		//if (Input.GetKeyDown(KeyCode.Space))
+		//{
+		//	HitCount = 0;
+		//	HitCountOverThreshold1 = 0;
+		//	HitCountOverThreshold2 = 0;
+		//	HitCountOverThreshold3 = 0;
+		//	currentHealth = maxHealth;
+		//}
 		UpdateSprite();
 	}
 
@@ -89,31 +91,32 @@ public class BuildingHealth : MonoBehaviour {
 		while (progress < 1)
 		{
 			progress = Mathf.InverseLerp(startTimer, endTimer, Time.time);
-			destroyed.transform.localScale = Vector3.one * (1 - progress);
+			destroyed.transform.localScale = Vector3.one * collapseCurve.Evaluate(progress);
 			yield return null;
 		}
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision)
+	private void OnTriggerEnter2D(Collider2D collider)
 	{
 		HitCount++;
-		if (collision.attachedRigidbody.velocity.sqrMagnitude > _hitThreshold1Sqr)
+		if (collider.attachedRigidbody.velocity.sqrMagnitude > _hitThreshold1Sqr)
 		{
 			HitCountOverThreshold1++;
 			currentHealth -= 0.05f;
 			AudioManager.PlayWaveCrash(player);
 		}
-		if (collision.attachedRigidbody.velocity.sqrMagnitude > _hitThreshold2Sqr)
+		if (collider.attachedRigidbody.velocity.sqrMagnitude > _hitThreshold2Sqr)
 		{
 			HitCountOverThreshold2++;
 			currentHealth -= 0.2f;
 		}
-		if (collision.attachedRigidbody.velocity.sqrMagnitude > _hitThreshold3Sqr)
+		if (collider.attachedRigidbody.velocity.sqrMagnitude > _hitThreshold3Sqr)
 		{
 			HitCountOverThreshold3++;
 			currentHealth -= 1f;
 		}
 
-		stuckBallMover.RemoveBall(collision.gameObject);
+		if (OnDamage != null) OnDamage(collider.gameObject, spriteIndex);
+		stuckBallMover.RemoveBall(collider.gameObject);
 	}
 }
