@@ -173,6 +173,53 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!1001 &896473935
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4461953114234240, guid: d7268825d9be9c949b83fab5105228f0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.07951044
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461953114234240, guid: d7268825d9be9c949b83fab5105228f0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.066749856
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461953114234240, guid: d7268825d9be9c949b83fab5105228f0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461953114234240, guid: d7268825d9be9c949b83fab5105228f0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461953114234240, guid: d7268825d9be9c949b83fab5105228f0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461953114234240, guid: d7268825d9be9c949b83fab5105228f0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461953114234240, guid: d7268825d9be9c949b83fab5105228f0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461953114234240, guid: d7268825d9be9c949b83fab5105228f0, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114778358323327622, guid: d7268825d9be9c949b83fab5105228f0,
+        type: 2}
+      propertyPath: startState
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d7268825d9be9c949b83fab5105228f0, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1029402161
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,7 +305,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1412231239
 GameObject:
@@ -306,7 +353,7 @@ Transform:
   - {fileID: 1929834665}
   - {fileID: 1604911646}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1412231242
 AudioSource:
