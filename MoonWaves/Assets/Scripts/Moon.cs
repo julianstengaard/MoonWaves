@@ -19,16 +19,16 @@ public class Moon : MonoBehaviour {
 	public float suckSpeed;
     public AnimationCurve SpeedCurve;
     public float BrakeFactor;
+    
     public AnimationCurve BounceCurve;
 
     private float _curveDuration;
 
     private float _currentInertia;
+    private float _currentBounceInertia;
     private float _currentAngle;
-
+    
     private bool _bouncing;
-    private float _bounceDirection;
-    private float _bounceTimer;
 
     private bool _sucking;
 
@@ -65,30 +65,34 @@ public class Moon : MonoBehaviour {
 		_sucking = _canSuck;
 
 	    if (_bouncing) {
-	        _currentAngle += BounceCurve.Evaluate(_bounceTimer) * _bounceDirection * Time.deltaTime;
-	        _bounceTimer += Time.deltaTime;
-	        if (_bounceTimer >= BounceCurve[BounceCurve.length - 1].time) {
-	            _bouncing = false;
-	        }
-	    } else {
+            UpdateInertia(_currentBounceInertia, false);
+            //_currentAngle += BounceCurve.Evaluate(_bounceTimer) * _bounceDirection * Time.deltaTime;
+	        _bouncing = false;
+        } else {
 	        float horizontal = Input.GetAxis(InputAxisName);
 	        if (Mathf.Abs(horizontal) > 0.1f) {
 	            UpdateInertia(horizontal, true);
 	        } else {
 	            UpdateInertia(horizontal, false);
 	        }
-	        UpdateAngle();
-	    }
-	    SetPosition(_currentAngle);
+        }
+        UpdateAngle();
+        SetPosition(_currentAngle);
     }
 
     private void UpdateInertia(float direction, bool moving) {
+        float previousBounceDir = Mathf.Sign(_currentBounceInertia);
+        _currentBounceInertia += -Mathf.Sign(_currentBounceInertia) * Time.deltaTime;
+        if (previousBounceDir != Mathf.Sign(_currentBounceInertia)) {
+            _currentBounceInertia = 0f;
+        }
+
         if (moving) {
-            float accelerationFactor = (Mathf.Sign(_currentInertia) != Mathf.Sign(direction)) ? BrakeFactor : 1f;
+            float accelerationFactor = (Mathf.Sign(_currentInertia) != Mathf.Sign(direction)) ? GetCurrentBrakeFactor() : 1f;
             _currentInertia = Mathf.Min(_curveDuration, Mathf.Max(-_curveDuration, _currentInertia + direction * accelerationFactor * Time.deltaTime));
         } else {
             float previousDirection = Mathf.Sign(_currentInertia);
-            _currentInertia += -Mathf.Sign(_currentInertia) * Time.deltaTime * BrakeFactor;
+            _currentInertia += -Mathf.Sign(_currentInertia) * Time.deltaTime * GetCurrentBrakeFactor();
             if (previousDirection != Mathf.Sign(_currentInertia)) {
                 _currentInertia = 0f;
             }
@@ -97,6 +101,8 @@ public class Moon : MonoBehaviour {
 
     private void UpdateAngle() {
         _currentAngle += Mathf.Sign(_currentInertia) * SpeedCurve.Evaluate(_currentInertia) * (_sucking ? suckSpeed : speed) * Time.deltaTime;
+        _currentAngle += Mathf.Sign(_currentBounceInertia) * BounceCurve.Evaluate(_currentBounceInertia) * Time.deltaTime;
+
         if (_currentAngle >= Mathf.PI * 2f) {
             _currentAngle -= Mathf.PI * 2f;
         } else if (_currentAngle <= 0f) {
@@ -112,29 +118,43 @@ public class Moon : MonoBehaviour {
 
     public void StartBounce(Moon otherMoon) {
         if (_bouncing) {
+            _bouncing = false;
             return;
         }
         float dir = 0f;
         if (otherMoon.CurrentAngle > _currentAngle) {
             dir = -1f;
+            //Crossing wrap point?
             if (Mathf.Abs(otherMoon.CurrentAngle - _currentAngle) > Mathf.PI) {
-                dir = -dir;
+                //Other moon is "under"
+                if (otherMoon.CurrentAngle > Mathf.PI) {
+                    dir = 1f;
+                }
             }
         } else {
             dir = 1f;
         }
-        SetBounceDirectionAndStart(dir);
-        otherMoon.SetBounceDirectionAndStart(-dir);
+        float otherInertia = otherMoon._currentInertia * otherMoon.GetCurrentUsedSpeed();
+        float myInertia = _currentInertia * GetCurrentUsedSpeed();
+        SetBounceDirectionAndStart(dir, otherInertia);
+        otherMoon.SetBounceDirectionAndStart(-dir, myInertia);
     }
 
-    public void SetBounceDirectionAndStart(float dir) {
-        _bounceDirection = dir;
+    public float GetCurrentUsedSpeed() {
+        return (_sucking ? suckSpeed : speed) / 2f;
+    }
+    public float GetCurrentBrakeFactor() {
+        return (_sucking ? BrakeFactor/5f : BrakeFactor);
+    }
+
+    public void SetBounceDirectionAndStart(float dir, float otherInertia) {
+        _currentAngle += dir * 0.02f;
         _bouncing = true;
-        _bounceTimer = 0f;
-        _currentInertia = 0f;
+        _currentInertia = otherInertia;
+        _currentBounceInertia = otherInertia;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
+    private void OnCollisionEnter2D(Collision2D collision) {
         if (!_bouncing) {
 			Moon moon = collision.gameObject.GetComponent<Moon>();
 			if (moon == null) return;
