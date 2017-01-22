@@ -8,15 +8,18 @@ public class GameManager : MonoBehaviour {
 	public delegate void StateChangeHandler(LevelStates oldState, LevelStates newState);
 	public static event StateChangeHandler OnStateChange;
 
+	public LevelStates startState;
+
 	public enum LevelStates
 	{
+		None,
 		MainMenu,
 		IntroMovie,
 		Countdown,
 		Battle,
 		Menu
 	}
-	private LevelStates _currentState;
+	private LevelStates _currentState = LevelStates.None;
 	public static LevelStates currentState { get { return _instance._currentState; } }
 
 	void Awake()
@@ -26,8 +29,11 @@ public class GameManager : MonoBehaviour {
 			DestroyImmediate(gameObject);
 			return;
 		}
+
 		_instance = this;
 		DontDestroyOnLoad(this);
+
+		ChangeState(startState);
 	}
 	
 	public static void SetState(LevelStates newState) { _instance._currentState = newState; }
@@ -35,10 +41,42 @@ public class GameManager : MonoBehaviour {
 	{
 		OnLeaveState(_currentState);
 
-		OnStateChange(_currentState, newState);
+		if (OnStateChange != null) OnStateChange(_currentState, newState);
 		_currentState = newState;
 
 		OnEnterState(newState);
+	}
+
+	public void OnEnterState(LevelStates state)
+	{
+		Debug.Log("Enter state - " + state);
+
+		switch (state)
+		{
+			case LevelStates.MainMenu:
+
+				break;
+
+
+			case LevelStates.IntroMovie:
+
+				break;
+
+
+			case LevelStates.Countdown:
+
+				break;
+
+
+			case LevelStates.Battle:
+
+				break;
+
+
+			case LevelStates.Menu:
+				Time.timeScale = 0;
+				break;
+		}
 	}
 
 	public void OnLeaveState(LevelStates state)
@@ -68,38 +106,7 @@ public class GameManager : MonoBehaviour {
 
 
 			case LevelStates.Menu:
-				
-				break;
-		}
-	}
-	public void OnEnterState(LevelStates state)
-	{
-		Debug.Log("Enter state - " + state);
-
-		switch (state)
-		{
-			case LevelStates.MainMenu:
-
-				break;
-
-
-			case LevelStates.IntroMovie:
-
-				break;
-
-
-			case LevelStates.Countdown:
-
-				break;
-
-
-			case LevelStates.Battle:
-
-				break;
-
-
-			case LevelStates.Menu:
-
+				Time.timeScale = 1;
 				break;
 		}
 	}
