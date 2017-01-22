@@ -36,8 +36,7 @@ public class Moon : MonoBehaviour {
 	{
 		get
 		{
-			return anim.GetCurrentAnimatorStateInfo(0).IsName("moonFaceSuck") &&
-				GameManager.currentState == GameManager.LevelStates.Battle;
+			return anim.GetCurrentAnimatorStateInfo(0).IsName("moonFaceSuck");
 		}
 	}
 
@@ -57,10 +56,16 @@ public class Moon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if (Input.GetAxis(InputSuckName) > 0f) {
-			anim.SetBool("suckFromEarth", true);
-	    } else {
-			anim.SetBool("suckFromEarth", false);
+		if (GameManager.currentState == GameManager.LevelStates.Battle)
+		{
+			if (Input.GetAxis(InputSuckName) > 0f)
+			{
+				anim.SetBool("suckFromEarth", true);
+			}
+			else
+			{
+				anim.SetBool("suckFromEarth", false);
+			}
 		}
 
 		_sucking = _canSuck;

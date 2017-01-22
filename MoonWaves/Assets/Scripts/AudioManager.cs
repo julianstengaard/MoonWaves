@@ -70,7 +70,10 @@ public class AudioManager : MonoBehaviour {
 
 	private void OnStateChange(GameManager.LevelStates oldState, GameManager.LevelStates newState)
 	{
-		if (newState == GameManager.LevelStates.Menu) menuSnapshot.TransitionTo(.5f);
+		if (newState == GameManager.LevelStates.Menu)
+		{
+			menuSnapshot.TransitionTo(.5f);
+		}
 		else defaultSnapshot.TransitionTo(.5f);
 	}
 
