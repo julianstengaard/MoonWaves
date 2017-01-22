@@ -71,6 +71,7 @@ public class BuildingHealth : MonoBehaviour {
 			spriteIndex++;
 
 			AudioManager.StateChangeAudio(AudioManager.CrashSounds.Minor);
+			collapseParticles.Play();
 
 			if (spriteIndex < states.Length)
 			{
@@ -81,6 +82,7 @@ public class BuildingHealth : MonoBehaviour {
 				isDead = true;
 				if (GetComponent<Castle>() != null) AudioManager.StateChangeAudio(AudioManager.CrashSounds.CastleCollapse);
 				else AudioManager.StateChangeAudio(AudioManager.CrashSounds.TowerCollapse);
+				destroyParticles.Play();
 				StartCoroutine(DestroyRoutine());
 			}
 		}

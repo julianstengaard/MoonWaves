@@ -30,6 +30,14 @@ public class Moon : MonoBehaviour {
 
     private bool _sucking;
 
+	private bool _canSuck
+	{
+		get
+		{
+			return anim.GetCurrentAnimatorStateInfo(0).IsName("moonFaceSuck");
+		}
+	}
+
     public float CurrentAngle {
         get { return _currentAngle; }
     }
@@ -47,12 +55,12 @@ public class Moon : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	    if (Input.GetAxis(InputSuckName) > 0f) {
-	        _sucking = true;
 			anim.SetBool("suckFromEarth", true);
 	    } else {
-	        _sucking = false;
 			anim.SetBool("suckFromEarth", false);
 		}
+
+		_sucking = _canSuck;
 
 	    if (_bouncing) {
 	        _currentAngle += BounceCurve.Evaluate(_bounceTimer) * _bounceDirection * Time.deltaTime;
