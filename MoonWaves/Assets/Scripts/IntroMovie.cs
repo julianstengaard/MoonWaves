@@ -8,12 +8,27 @@ public class IntroMovie : MonoBehaviour {
 	public float holdToSkipTime;
 	public float textRemainTime;
 	public GameObject skipText;
+	public MovieTexture movie;
 
 	private float skipTimer;
 	private float disappearTimer;
+	private AudioSource source;
+
+	void Awake()
+	{
+		source = GetComponent<AudioSource>();
+	}
+
+	void Start()
+	{
+		source.Play();
+		movie.Play();
+	}
 
 	void Update()
 	{
+		if (!source.isPlaying) Continue();
+
 		if (Input.GetAxis("Fire1") <= 0 && Input.GetAxis("Fire2") <= 0)
 		{
 			skipTimer = Time.time;
@@ -27,8 +42,13 @@ public class IntroMovie : MonoBehaviour {
 
 			if (Time.time > skipTimer + holdToSkipTime)
 			{
-				UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneIndex);
+				Continue();
 			}
 		}
+	}
+
+	private void Continue()
+	{
+		UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneIndex);
 	}
 }
