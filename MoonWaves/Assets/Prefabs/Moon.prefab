@@ -180,7 +180,8 @@ AudioSource:
   m_GameObject: {fileID: 1676448319101106}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243060645359148438, guid: 94ec8360630a6824b856cdfcf312a5c3,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -299,8 +300,8 @@ MonoBehaviour:
   _OffsetY: 3
   _DistanceX: 0.01
   _DistanceY: 0.01
-  _WaveTimeX: 2.5615442
-  _WaveTimeY: 0
+  _WaveTimeX: 3.7729726
+  _WaveTimeY: 4.378782
   AutoPlayWaveX: 1
   AutoPlaySpeedX: 5
   AutoPlayWaveY: 1

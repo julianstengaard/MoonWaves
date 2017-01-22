@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour {
 
 	private static AudioManager _instance;
+
+	[Header("General Settings")]
+	public AudioMixerSnapshot defaultSnapshot;
+	public AudioMixerSnapshot menuSnapshot;
 
 	[Header("Ambience Settings")]
 	public float fadeTime;
@@ -46,6 +51,8 @@ public class AudioManager : MonoBehaviour {
 
 	void Start()
 	{
+		GameManager.OnStateChange += OnStateChange;
+
 		//wavesOne.volume = 0;
 		//wavesOne.Play();
 		//wavesTwo.volume = 0;
@@ -59,6 +66,12 @@ public class AudioManager : MonoBehaviour {
 		//UpdateWaves(WaterParticle.waveCollisionCountAvg);
 		UpdateDelays();
 
+	}
+
+	private void OnStateChange(GameManager.LevelStates oldState, GameManager.LevelStates newState)
+	{
+		if (newState == GameManager.LevelStates.Menu) menuSnapshot.TransitionTo(.5f);
+		else defaultSnapshot.TransitionTo(.5f);
 	}
 
 	private void UpdateWaves(int count)

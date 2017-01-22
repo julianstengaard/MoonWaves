@@ -36,7 +36,8 @@ public class Moon : MonoBehaviour {
 	{
 		get
 		{
-			return anim.GetCurrentAnimatorStateInfo(0).IsName("moonFaceSuck");
+			return anim.GetCurrentAnimatorStateInfo(0).IsName("moonFaceSuck") &&
+				GameManager.currentState == GameManager.LevelStates.Battle;
 		}
 	}
 
